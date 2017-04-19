@@ -3,10 +3,10 @@
 **Tên đề tài** là một repository trong đề tài tìm hiểu của lớp Ứng dụng phân tán.
 
 Thành viên:
-* [ ] **MSSV1** Tên sinh viên 1 (tên tài khoản github)
-* [ ] **MSSV2** Tên sinh viên 2 (tên tài khoản github)
+* [x] 1412503 Nguyễn Thị Thanh Thảo (tên tài khoản github)
+* [x] 1412520 Nguyễn Hoàng Thi (tên tài khoản github)
 
-URL: **Link github page**
+URL: thikhin96.github.io
 
 ## Yêu cầu
 
