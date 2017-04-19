@@ -1,12 +1,12 @@
-# Seminar-UDPT - *Tên đề tài*
+# Seminar-UDPT - Electron
 
-**Tên đề tài** là một repository trong đề tài tìm hiểu của lớp Ứng dụng phân tán.
+Electron là một repository trong đề tài tìm hiểu của lớp Ứng dụng phân tán.
 
 Thành viên:
-* [x] 1412503 Nguyễn Thị Thanh Thảo (tên tài khoản github)
-* [x] 1412520 Nguyễn Hoàng Thi (tên tài khoản github)
+* [x] 1412503 Nguyễn Thị Thanh Thảo (thaonguyen1096)
+* [x] 1412520 Nguyễn Hoàng Thi (thikhin96)
 
-URL: thikhin96.github.io
+URL: https://thikhin96.github.io/
 
 ## Yêu cầu
 
