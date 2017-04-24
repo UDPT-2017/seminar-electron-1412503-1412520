@@ -1,0 +1,27 @@
+{
+  "name": "seminar-electron-1412503-1412520",
+  "version": "1.0.0",
+  "description": "Electron là một repository trong đề tài tìm hiểu của lớp Ứng dụng phân tán.",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UDPT-2017/seminar-electron-1412503-1412520.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UDPT-2017/seminar-electron-1412503-1412520/issues"
+  },
+  "homepage": "https://github.com/UDPT-2017/seminar-electron-1412503-1412520#readme",
+  "devDependencies": {
+    "electron-prebuilt": "^1.4.13"
+  },
+  "dependencies": {
+    "electron-connect": "^0.6.1",
+    "electron-reload": "^1.1.0"
+  }
+}

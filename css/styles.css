@@ -1,0 +1,189 @@
+html, 
+body {
+    height: 100%;
+}
+
+.body-logIn{
+	background-image: url('../images/hoho.jpg');
+}
+
+.container{
+	height: 100%;
+}
+.center{
+	margin: auto;
+	display: block;
+	opacity: 0.9;
+	width: 400px;
+	padding: 20px;
+	background: #eee;
+}
+
+.clicked{
+	opacity: 1;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.form-control {
+  width: 100%;
+  height: 50px;
+  border: none;
+  padding: 5px 7px 5px 15px;
+  background: #fff;
+  color: #666;
+  border: 2px solid #ddd;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+.form-control:focus, .form-control:focus + .fa {
+  border-color: #10CE88;
+  color: #10CE88;
+}
+
+.form-group .fa {
+  position: absolute;
+  right: 15px;
+  top: 35px;
+  color: #999;
+}
+
+.form-group .btn{
+  font-weight: 600;
+  font-size: 1em;
+}
+
+.log-btn {
+  background: #0AC986;
+  display: inline-block;
+  margin: 8px;
+  width: 45%;
+  font-size: 16px;
+  height: 50px;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  font-weight: 800;
+  font-size: 0.8em;
+}
+
+.signup-btn {
+	 background: #3498db;
+}
+
+h4.modal-title{
+	color: #3498db;
+}
+
+.modal-content{
+	background-color: #eee !important;
+}
+
+#side-nav{
+	background-color: #000;
+	padding-top: 18px;
+	width:71px;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+}
+
+#top-bar{
+	text-align: right;
+	padding: 12px;
+	background-color: #f5f5f5;
+	height: 40px;
+	position: absolute;
+	left: 71px;
+	top: 0;
+	right: 0;
+}
+
+#top-bar a{
+	font-size: 1.8rem;
+}
+
+#side-nav a{
+	font-size: 3rem;
+	color: #555;
+}
+
+#side-nav a:hover{
+	color: #52affb;
+}
+
+#side-nav ul{
+	list-style: none;
+	padding: 20px;
+	margin: 0;
+}
+
+#side-nav li{
+	padding-bottom: 8px;
+}
+
+#wrapper{
+	position: relative;
+	height:100%;
+	min-width: 800px;
+}
+
+#mainHome{
+	position: absolute;
+	top: 65px; 
+	left: 100px;
+}
+
+/*--------Calendar-zone-----*/
+	#external-events {
+		float: left;
+		width: 150px;
+		padding: 0 10px;
+		text-align: left;
+		}
+		
+	#external-events h4 {
+		font-size: 16px;
+		margin-top: 0;
+		padding-top: 1em;
+		}
+		
+	.external-event { /* try to mimick the look of a real event */
+		margin: 10px 0;
+		padding: 2px 4px;
+		background: #3366CC;
+		color: #fff;
+		font-size: .85em;
+		cursor: pointer;
+		}
+		
+	#external-events p {
+		margin: 1.5em 0;
+		font-size: 11px;
+		color: #666;
+		}
+		
+	#external-events p input {
+		margin: 0;
+		vertical-align: middle;
+		}
+
+	#calendar {
+/* 		float: right; */
+        margin: 0 auto;
+		max-width: 1000px;
+		background-color: #FFFFFF;
+		  border-radius: 6px;
+        box-shadow: 0 1px 2px #C3C3C3;
+		-webkit-box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
+-moz-box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
+box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
+		margin-bottom: 20px;
+		}
