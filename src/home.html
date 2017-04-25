@@ -30,7 +30,8 @@
         	{
             title: 'My Event',
             start: '2017-04-24',
-            end: '2017-04-27'
+            end: '2017-04-27',
+            allDay: true,
         	}
         // other events here
     		],
@@ -65,6 +66,23 @@
 				<div id='calendar'></div>
 			</div>
 			
+	</div>
+	<script>
 
+		$( document ).ready(function() {
+
+		document.addEventListener('keydown', function(e){
+			if (e.which === 123)
+			{
+				require('electron').remote.getCurrentWindow().toggleDevTools();
+			} else if (e.which === 116)
+			{
+				location.reload();
+			}
+		});
+
+		});
+		
+	</script>
 </body>
 </html>
