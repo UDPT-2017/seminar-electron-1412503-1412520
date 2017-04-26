@@ -4,6 +4,8 @@ const BrowserWindow = electron.BrowserWindow;
 const path = require('path');
 const url = require('url');
 
+
+
 let mainWindow
 
 
@@ -22,7 +24,9 @@ app.on('ready', _=>{
     slashes: true
   }));
 
+
 	mainWindow.on('closed', _=>{
 		mainWindow = null;
 	})
 });
+
