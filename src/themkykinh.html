@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Thêm kỳ kinh</title>
+
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href= "../css/styles.css">
+	<link rel="stylesheet" href= "../css/bootstrap.css">
+	<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+
+	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+
+	<script language="JavaScript" type="text/javascript" src="../js/jquery.min.js" charset="utf-8"></script>
+	<script language="JavaScript" type="text/javascript" src="../js/bootstrap.js" charset="utf-8"></script>
+	<script src="../node_modules/pouchdb/dist/pouchdb.js"></script>
+	<script language="JavaScript" type="text/javascript" src="../js/themkykinh.js" charset="utf-8"></script>
+
+	<script>if (window.module) module = window.module;</script>
+	<link href="../css/jquery-ui-1.10.1.css" rel="stylesheet">
+	<link href="../css/lugo.datepicker.css" rel="stylesheet">
+
+</head>
+<body>
+	<div id=wrapper>
+			<div id="top-bar">
+				<a href="#"><i class="fa fa-user"></i></a>
+			</div>
+			<div id="side-nav">
+				<ul style="list-style:none">
+					<li><a href="home.html"><i class="fa fa-home"></i></a></li>
+					<li><a href="themkykinh.html"><i class="fa fa-list"></i></a></li>
+					<li><a href="chinhsuakykinh.html"><i class="fa fa-search"></i></a></li>
+				</ul>
+			</div>
+      <div class="set-center">
+        <h1 class="tit">Thêm kỳ kinh</h1>
+        <br>
+        <div class="date_style">
+            Ngày bắt đầu:
+						<input type="text" id="start" data-date-format="DD-MM-YYYY"  onChange="myFunction()"/>
+            <!-- <button type ="button">Chọn</button> -->
+            <span style="display:inline-block; width: 5%;"></span>
+            Ngày kết thúc:
+						<input type="text" id="end" data-date-format="DD-MM-YYYY" onChange="myFunction()"/>
+						<!-- <button type ="button">Chọn</button> -->
+          <br>  <br>
+          <p>Kỳ kinh kéo dài: <span class ="style_date" id="kykinh"></span> ngày</p>
+          <br> <br>
+          <button type ="button" id = "hoantat">Hoàn tất</button>
+          <br><br>
+        </div>
+      </div>
+
+			<script src="../js/jquery-1.9.1.js"></script>
+			<script src="../js/jquery-ui-1.10.1.min.js"></script>
+			<script type="text/javascript">
+			$(document).ready(
+			function () {
+				$( "#start" ).datepicker({
+					maxDate: new Date(),
+					afterShowDay: disableSpecificDaysAndWeekends,
+					onSelect : function(selected_date){
+						var selectedDate = new Date(selected_date);
+						var msecsInADay = 86400000;
+						var endDate = new Date(selectedDate.getTime() + msecsInADay);
+						 $("#end").datepicker( "option", "minDate", endDate );//end>start
+						 $("#end").val(""); //set giá trị end về rỗng
+						 document.getElementById("kykinh").innerHTML = "";//set giá trị kỳ kinh về rỗng
+					}
+				}).datepicker('widget').wrap('<div class="ll-skin-lugo"/>');
+				$('#end').datepicker({}).datepicker('widget').wrap('<div class="ll-skin-lugo"/>');;
+			}
+			);
+			var disabledSpecificDays = ["6-10-2015", "6-15-2015", "6-25-2015", "6-21-2015"];
+
+			function disableSpecificDaysAndWeekends(date) {
+				var m = date.getMonth();
+				var d = date.getDate();
+				var y = date.getFullYear();
+
+				for (var i = 0; i < disabledSpecificDays.length; i++) {
+						if ($.inArray((m + 1) + '-' + d + '-' + y, disabledSpecificDays) != -1 || new Date() > date) {
+								return [false];
+						}
+				}
+				return [true];
+			}
+
+			//tính chu kỳ kinh kéo dài
+			function myFunction() {
+				var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+		    var x = new Date($("#start").val());
+				var y = new Date($("#end").val());
+				var kykinh = Math.round((y.getTime() - x.getTime())/oneDay) + 1;
+		    document.getElementById("kykinh").innerHTML = kykinh;
+			}
+			</script>
+
+
+</body>
+</html>
