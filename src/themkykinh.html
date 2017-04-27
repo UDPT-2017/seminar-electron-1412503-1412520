@@ -38,16 +38,16 @@
         <br>
         <div class="date_style">
             Ngày bắt đầu:
-						<input type="text" id="start" data-date-format="DD-MM-YYYY"  onChange="myFunction()"/>
+						<input type="text" id="start" onChange="myFunction()"/>
             <!-- <button type ="button">Chọn</button> -->
             <span style="display:inline-block; width: 5%;"></span>
             Ngày kết thúc:
-						<input type="text" id="end" data-date-format="DD-MM-YYYY" onChange="myFunction()"/>
+						<input type="text" id="end" onChange="myFunction()" disabled="disabled" />
 						<!-- <button type ="button">Chọn</button> -->
           <br>  <br>
           <p>Kỳ kinh kéo dài: <span class ="style_date" id="kykinh"></span> ngày</p>
           <br> <br>
-          <button type ="button" id = "hoantat">Hoàn tất</button>
+          <button type ="button" id = "hoantat" disabled="disabled">Hoàn tất</button>
           <br><br>
         </div>
       </div>
@@ -55,48 +55,29 @@
 			<script src="../js/jquery-1.9.1.js"></script>
 			<script src="../js/jquery-ui-1.10.1.min.js"></script>
 			<script type="text/javascript">
+			var d = new Date();
+			var today = (d.getDate()/d.getMonth()/d.getFullYear());
 			$(document).ready(
 			function () {
 				$( "#start" ).datepicker({
-					maxDate: new Date(),
-					afterShowDay: disableSpecificDaysAndWeekends,
+					maxDate: today,
+					dateFormat: "dd/mm/yy",
 					onSelect : function(selected_date){
+						document.getElementById("end").disabled = false;		//enable ngày kết thúc
+						document.getElementById("hoantat").disabled = false;//enable button hoàn tất
 						var selectedDate = new Date(selected_date);
-						var msecsInADay = 86400000;
-						var endDate = new Date(selectedDate.getTime() + msecsInADay);
-						 $("#end").datepicker( "option", "minDate", endDate );//end>start
-						 $("#end").val(""); //set giá trị end về rỗng
-						 document.getElementById("kykinh").innerHTML = "";//set giá trị kỳ kinh về rỗng
+
+						$("#end").datepicker( "option", "minDate", selected_date );	//end>start
+					 	$("#end").val(""); //set giá trị end về rỗng khi start thay đổi
+					 document.getElementById("kykinh").innerHTML = "";	//set giá trị kỳ kinh về rỗng khi start thay đổi
 					}
 				}).datepicker('widget').wrap('<div class="ll-skin-lugo"/>');
-				$('#end').datepicker({}).datepicker('widget').wrap('<div class="ll-skin-lugo"/>');;
+				$('#end').datepicker({
+					dateFormat: "dd/mm/yy"
+				}).datepicker('widget').wrap('<div class="ll-skin-lugo"/>');
 			}
 			);
-			var disabledSpecificDays = ["6-10-2015", "6-15-2015", "6-25-2015", "6-21-2015"];
-
-			function disableSpecificDaysAndWeekends(date) {
-				var m = date.getMonth();
-				var d = date.getDate();
-				var y = date.getFullYear();
-
-				for (var i = 0; i < disabledSpecificDays.length; i++) {
-						if ($.inArray((m + 1) + '-' + d + '-' + y, disabledSpecificDays) != -1 || new Date() > date) {
-								return [false];
-						}
-				}
-				return [true];
-			}
-
-			//tính chu kỳ kinh kéo dài
-			function myFunction() {
-				var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
-		    var x = new Date($("#start").val());
-				var y = new Date($("#end").val());
-				var kykinh = Math.round((y.getTime() - x.getTime())/oneDay) + 1;
-		    document.getElementById("kykinh").innerHTML = kykinh;
-			}
 			</script>
-
 
 </body>
 </html>

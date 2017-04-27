@@ -141,6 +141,8 @@ h4.modal-title{
 	left: 100px;
 }
 
+
+/*//////////////////////////////////////*/
 .tit{
   font-family: times;
   font-weight: bold;
@@ -161,7 +163,7 @@ h4.modal-title{
 .set-center{
   top:60px;
   text-align: center;
-  margin-left: 10%;
+  margin-left: 13%;
   margin-right: auto;
 	width: 1000px;
   position: absolute;
@@ -172,7 +174,7 @@ h4.modal-title{
   font-size: 25px;
   font-family: times;
 }
-#hoantat{
+#hoantat, #xoa{
   font-weight: bold;
 }
 
