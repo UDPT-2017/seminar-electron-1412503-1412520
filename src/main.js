@@ -13,11 +13,11 @@ app.on('ready', _=>{
 		width: 1280,
 		resizable: false,
 	});
-	
+
 	console.log('hoho');
 
 	mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'logIn.html'),
+    pathname: path.join(__dirname, 'home.html'),
     protocol: 'file:',
     slashes: true
   }));
