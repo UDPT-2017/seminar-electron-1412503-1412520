@@ -46,6 +46,7 @@ const {ipcRenderer} = require('electron');
 
   	//đăng nhập
     document.getElementById('sin').addEventListener('click', () => {
+    database.test();
 
     var res = undefined;
 

@@ -1,5 +1,6 @@
 var user = new PouchDB('User');
 var period = new PouchDB('Period');
+var docURI = require('docuri');
 
 exports.addUser = function(username, password, lastPeriod, mentsCycle, avgPeriod, callback)
 {
@@ -47,3 +48,24 @@ exports.updateUser = function(username, newUsername, newPassword, newMentsCycle,
     	return 0;
     });                                                                                                                                                                                                 
 };
+
+
+exports.addPeriod = function(username, firstDay, lastDay)
+{
+
+  var periodIDs = docURI.route('periodIDs/:Username/:FirstDay');
+  var id = {Username: username, FirstDay: firstDay};
+    var period = {
+      "_id": periodIDs(id),      //chuyển object id thành chuỗi (để chuyển ngược _id thành id dùng periodIDs(_id))
+      "LastPeriod": lastDay,
+    };
+
+    period.put(period).then(function()
+      {
+        callback(null);
+      }).catch(function(err){
+        callback(err);
+      }); 
+};
+
+
