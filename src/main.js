@@ -24,25 +24,7 @@ app.on('ready', _=>{
     slashes: true
   }));
 
-	ipcMain.on('CreateUser', (event, arg) => {
-	if (arg === 1)
-		event.sender.send('CreateUserReply', 'got it');
-	else
-		event.sender.send('CreateUserReply', 'looks like it failed @@');
-	});
 
-	ipcMain.on('SignIn', (event, arg) => {
-	if (arg !== 0)
-	{
-		mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'home.html'),
-    protocol: 'file:',
-    slashes: true
-  }));
-	}
-	else
-		event.sender.send('CreateUserReply', 'looks like it failed @@');
-	});
 
 	mainWindow.on('closed', _=>{
 		mainWindow = null;
@@ -51,3 +33,25 @@ app.on('ready', _=>{
 
 
 
+ipcMain.on('CreateUser', (event, arg) => {
+	if (arg === 1)
+		event.sender.send('CreateUserReply', 'got it');
+	else
+		event.sender.send('CreateUserReply', 'look like it failed @@');
+});
+
+ipcMain.on('SignIn', (event, arg) => {
+	if (arg !== 0)
+	{
+		mainWindow.loadURL(url.format({
+    	pathname: path.join(__dirname, 'home.html'),
+    	protocol: 'file:',
+    	slashes: true
+  		}));
+  		mainWindow.webContents.on('did-finish-load', () => {
+   			mainWindow.webContents.send('DirectToHome', arg)
+  		})
+	}
+	else
+		event.sender.send('SignInReply', 'look like it failed @@');
+});
