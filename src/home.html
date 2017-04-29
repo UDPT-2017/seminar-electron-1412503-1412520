@@ -17,6 +17,8 @@
 	<script language="JavaScript" type="text/javascript" src="../js/moment.min.js" charset="utf-8"></script>
 	<script language="JavaScript" type="text/javascript" src="../js/fullcalendar.js" charset="utf-8"></script>
 	<script src="../node_modules/pouchdb/dist/pouchdb.js"></script>
+	<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../node_modules/sweetalert/dist/sweetalert.css">
 
 	<script>if (window.module) module = window.module;</script>
 
@@ -29,10 +31,14 @@
 
 	   		 events: [
         	{
-            title: 'My Event',
             start: '2017-04-24',
-            end: '2017-04-27',
+           // end: '2017-04-27',
             allDay: true,
+        	},
+        	{
+        		start: '2017-04-25',
+           // end: '2017-04-27',
+           		 allDay: true,
         	}
         // other events here
     		],
@@ -40,22 +46,21 @@
         	 if (event.url) {
             window.open(event.url);
             return false;
-        	}
-        $(this).css('border-color', 'red');
-
-    }
-		});
+        	}},
+        	editable: true,
+        	eventRender: function(event, element, calEvent) {
+            element.find(".fc-title").after($("<span ></span>").html("<img src=\"../images/S20.png\"></img>"));}
 		
 		
-	});
+	}); })
 
 </script>
 </head>
 <body>
 	<div id=wrapper>
 			<div id="top-bar">
-				<label id="username"></label> <i class="fa fa-user"></i>
-				<i class="fa fa-sign-out" aria-hidden="true" style = "margin-left: 10px; font-size: 2.8rem; padding: 2px"></i>
+				<label id="username"></label><i class="fa fa-user"></i>
+				<i class="fa fa-sign-out" aria-hidden="true" id="logOut"></i>
 			</div>
 			<div id="side-nav">
 				<ul style="list-style:none">

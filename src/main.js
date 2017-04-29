@@ -55,3 +55,14 @@ ipcMain.on('SignIn', (event, arg) => {
 	else
 		event.sender.send('SignInReply', 'look like it failed @@');
 });
+
+ipcMain.on('LogOut', (event, arg) => {
+	if (arg === 1)
+	{
+		mainWindow.loadURL(url.format({
+    	pathname: path.join(__dirname, 'logIn.html'),
+    	protocol: 'file:',
+    	slashes: true
+  		}));
+	}
+});
