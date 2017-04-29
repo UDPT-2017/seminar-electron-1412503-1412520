@@ -55,12 +55,12 @@ exports.addPeriod = function(username, firstDay, lastDay)
 
   var periodIDs = docURI.route('periodIDs/:Username/:FirstDay');
   var id = {Username: username, FirstDay: firstDay};
-    var period = {
+    var per = {
       "_id": periodIDs(id),      //chuyển object id thành chuỗi (để chuyển ngược _id thành id dùng periodIDs(_id))
       "LastPeriod": lastDay,
     };
 
-    period.put(period).then(function()
+    period.put(per).then(function()
       {
         callback(null);
       }).catch(function(err){

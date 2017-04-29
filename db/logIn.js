@@ -16,9 +16,6 @@ const {ipcRenderer} = require('electron');
     var mentsCycle = document.getElementById('MC').value;
     var avgPeriod = document.getElementById('AP').value;
 
-    console.log(lastPeriod.getDate());
-    console.log(lastPeriod.getMonth());
-    console.log(lastPeriod.getFullYear());
 
 
     // Save the person in the database
@@ -46,7 +43,6 @@ const {ipcRenderer} = require('electron');
 
   	//đăng nhập
     document.getElementById('sin').addEventListener('click', () => {
-    database.test();
 
     var res = undefined;
 
@@ -60,6 +56,7 @@ const {ipcRenderer} = require('electron');
     	}
     	else
     	{
+        database.addPeriod(username, '2017-04-24', '2017-04-28');
     		ipcRenderer.send('SignIn', doc);
     	}
     });
