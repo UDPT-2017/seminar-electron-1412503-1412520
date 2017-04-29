@@ -1,4 +1,4 @@
-const database = require('../js/database');
+const database = require('../db/database');
 const jquery = require('../js/jquery-1.9.1.js');
 const jqueryui = require('../js/jquery-ui-1.10.1.min.js');
 
@@ -15,6 +15,10 @@ function myFunction() {
   document.getElementById("kykinh").innerHTML = kykinh;
 }
 
+function convertDayFormat(date){
+  var x = date.split("/");
+  return (x[2] + '-' + x[1]  + '-' + x[0]);
+}
 
 window.onload = function() {
   // Add the add button click event
@@ -28,11 +32,12 @@ window.onload = function() {
 
     // var start = new Date(x[2], x[1] - 1, x[0]);
     // var end = new Date(y[2], y[1] - 1, y[0]);
-
+    var start = convertDayFormat(x);
+    var end = convertDayFormat(y);
     console.log(start);
     console.log(end);
     // Save the person in the database
-    database.addPeriod(username, x, y);
+    database.addPeriod(username, start, end);
     // Reset the input fields
     $("#end").val("");
     $("#start").val("")

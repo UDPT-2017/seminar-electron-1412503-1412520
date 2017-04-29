@@ -24,11 +24,7 @@
     "docuri": "^4.2.2",
     "electron-connect": "^0.6.1",
     "electron-reload": "^1.1.0",
-<<<<<<< HEAD
-    "pouchdb": "^6.2.0"
-=======
     "pouchdb": "^6.2.0",
     "pouchdb-browser": "^6.2.0"
->>>>>>> database-added
   }
 }

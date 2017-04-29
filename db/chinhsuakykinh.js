@@ -1,4 +1,4 @@
-const database = require('../js/database');
+const database = require('../db/database');
 const jquery = require('../js/jquery-1.9.1.js');
 const jqueryui = require('../js/jquery-ui-1.10.1.min.js');
 
@@ -17,8 +17,7 @@ var username = "ThaoLua"
   }
 
 window.onload = function() {
-    database.all_period();
-
+    database.all_period(username);
     //Lưu thay đổi
     document.getElementById('hoantat').addEventListener('click', () => {
       var x = $("#all_start").val();
@@ -40,12 +39,12 @@ window.onload = function() {
   }
 
   function selectFunction() {
+
     document.getElementById("end").disabled = false;		//enable ngày kết thúc
     document.getElementById("hoantat").disabled = false;//enable button hoàn tất
     document.getElementById("xoa").disabled = false;//enable button hoàn tất
 
     var start = document.getElementById("all_start").value;
-
     //var username = document.getElementById('id của user bên html');
     // var username = "ThaoLua"
     database.find_endday(username, start);
