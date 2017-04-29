@@ -16,6 +16,7 @@
 	<script language="JavaScript" type="text/javascript" src="../js/bootstrap.js" charset="utf-8"></script>
 	<script language="JavaScript" type="text/javascript" src="../js/moment.min.js" charset="utf-8"></script>
 	<script language="JavaScript" type="text/javascript" src="../js/fullcalendar.js" charset="utf-8"></script>
+	<script src="../node_modules/pouchdb/dist/pouchdb.js"></script>
 
 	<script>if (window.module) module = window.module;</script>
 
@@ -53,7 +54,8 @@
 <body>
 	<div id=wrapper>
 			<div id="top-bar">
-				<a href="#"><i class="fa fa-user"></i></a>
+				<label id="username"></label> <i class="fa fa-user"></i>
+				<i class="fa fa-sign-out" aria-hidden="true" style = "margin-left: 10px; font-size: 2.8rem; padding: 2px"></i>
 			</div>
 			<div id="side-nav">
 				<ul style="list-style:none">
@@ -62,7 +64,8 @@
 					<li><a href="#"><i class="fa fa-search"></i></a></li>
 				</ul>
 			</div>
-			<div id="mainHome">
+			<div id="mainHome" class="container-fluid">
+
 				<div id='calendar'></div>
 			</div>
 			
@@ -84,5 +87,6 @@
 		});
 		
 	</script>
+	<script type="text/javascript" src="../db/home.js"></script>
 </body>
 </html>
