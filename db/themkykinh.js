@@ -69,6 +69,9 @@ window.onload = function (){
   ipcRenderer.send('DirectToHomePage', uInfo);
   });
 
+  document.getElementById('periodInfo').addEventListener('click', () => {
+  ipcRenderer.send('DirectToPeriodInfo', uInfo);
+  });
 
 }
 

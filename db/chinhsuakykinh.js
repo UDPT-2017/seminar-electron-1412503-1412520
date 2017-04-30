@@ -42,6 +42,9 @@ window.onload = function() {
         ipcRenderer.send('DirectToHomePage', uInfo);
     });
 
+    document.getElementById('periodInsertion').addEventListener('click', () => {
+        ipcRenderer.send('DirectToPeriodInsertion', uInfo);
+    });
   }
 
   function selectFunction() {
