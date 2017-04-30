@@ -4,7 +4,7 @@ const jqueryui = require('../js/jquery-ui-1.10.1.min.js');
 const {ipcRenderer} = require('electron');
 var uInfo = undefined;
 
-var username = "ThaoLua"
+
   //tính chu kỳ kinh kéo dài
   function myFunction() {
     var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
@@ -18,8 +18,8 @@ var username = "ThaoLua"
   }
 
 window.onload = function() {
-    database.all_period(username);
-    //Lưu thay đổi
+
+     //Lưu thay đổi
     document.getElementById('hoantat').addEventListener('click', () => {
       var x = $("#all_start").val();
       var y = $("#end").val();
@@ -66,5 +66,7 @@ ipcRenderer.on('DirectToPeriodInfoReply', (event, arg) => {
   console.log(arg);
   uInfo = arg;
   document.getElementById('username').innerHTML = uInfo._id;
+      database.all_period(uInfo._id);
+   
 });
 

@@ -10,6 +10,11 @@ ipcRenderer.on('DirectToHome', (event, arg) => {
 	database.getAllPeriod(uInfo._id, function(docs, err){
 		if (err === null)
 		{
+			var events = [];
+			for (var i= 0; i<docs.length; i++)
+			{
+				var event = {start:docs[i]. , allDay: true};
+			}
 			console.log(docs);
 		}else
 		{
@@ -49,5 +54,9 @@ window.onload = function (){
 				ipcRenderer.send('LogOut', 0);
 		});	
 	});
+}
+
+function getEvents(docs){
+	
 }
 
