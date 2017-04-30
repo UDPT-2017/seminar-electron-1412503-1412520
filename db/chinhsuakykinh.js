@@ -1,7 +1,8 @@
 const database = require('../db/database');
 const jquery = require('../js/jquery-1.9.1.js');
 const jqueryui = require('../js/jquery-ui-1.10.1.min.js');
-
+const {ipcRenderer} = require('electron');
+var uInfo = undefined;
 
 var username = "ThaoLua"
   //tính chu kỳ kinh kéo dài
@@ -36,6 +37,11 @@ window.onload = function() {
       alert("Xóa thành công!");
       window.location.reload(true);
     })
+
+    document.getElementById('homepage').addEventListener('click', () => {
+        ipcRenderer.send('DirectToHomePage', uInfo);
+    });
+
   }
 
   function selectFunction() {
@@ -51,3 +57,11 @@ window.onload = function() {
 
     $("#end").datepicker( "option", "minDate", start );	//end>start
   }
+
+
+ipcRenderer.on('DirectToPeriodInfoReply', (event, arg) => {
+  console.log(arg);
+  uInfo = arg;
+  document.getElementById('username').innerHTML = uInfo._id;
+});
+

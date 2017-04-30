@@ -1,6 +1,8 @@
 const database = require('../db/database');
 const jquery = require('../js/jquery-1.9.1.js');
 const jqueryui = require('../js/jquery-ui-1.10.1.min.js');
+const {ipcRenderer} = require('electron');
+var uInfo = undefined;
 
 
 //tính chu kỳ kinh kéo dài
@@ -19,14 +21,13 @@ function convertDayFormat(date){
   var x = date.split("/");
   return (x[2] + '-' + x[1]  + '-' + x[0]);
 }
-
-window.onload = function() {
+window.onload = function (){
   // Add the add button click event
   document.getElementById('hoantat').addEventListener('click', () => {
 
     // Retrieve the input fields
     //var username = document.getElementById('id của user bên html');
-    var username = "ThaoLua";
+    var username = uInfo._id;
     var x = $("#start").val();
     var y = $("#end").val();
 
@@ -37,10 +38,43 @@ window.onload = function() {
     console.log(start);
     console.log(end);
     // Save the person in the database
-    database.addPeriod(username, start, end);
+    database.addPeriod(username, start, end, function(err){
+      if (err !== null)
+      {
+        swal({
+            title: "Oops!!",
+            text: "You've already got this information recorded!",
+            type: "error",
+            confirmButtonText: "Try again",
+            confirmButtonColor: "#DD6B55"
+        });
+      }
+      else
+      {
+         swal({
+              title: "Success!",
+              text: "A new record is inserted!",
+              type: "success",
+              confirmButtonText: "Cool"
+              });
+      }
+    });
     // Reset the input fields
     $("#end").val("");
     $("#start").val("")
     document.getElementById("kykinh").value = "";
   });
+
+  document.getElementById('homepage').addEventListener('click', () => {
+  ipcRenderer.send('DirectToHomePage', uInfo);
+  });
+
+
 }
+
+ipcRenderer.on('DirectToPeriodInsertionReply', (event, arg) => {
+  console.log(arg);
+  uInfo = arg;
+  document.getElementById('username').innerHTML = uInfo._id;
+});
+

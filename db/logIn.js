@@ -4,9 +4,8 @@ const {ipcRenderer} = require('electron');
 
 
 
-
-
-  //đăng ký
+window.onload = function (){
+   //đăng ký
   document.getElementById('lgin').addEventListener('click', () => {
 
     // Retrieve the input fields
@@ -21,16 +20,16 @@ const {ipcRenderer} = require('electron');
 
     // Save the person in the database
     database.addUser(username, password, lastPeriod, mentsCycle, avgPeriod, function(err){
-    	if (err !== null)
-    	{
+      if (err !== null)
+      {
             document.getElementById('success').classList.remove('show');
             document.getElementById('success').classList.add('hide');
             document.getElementById('fail').classList.remove('hide');
             document.getElementById('fail').classList.add('show');
             console.log(err);
-    	}
-    	else
-    	{
+      }
+      else
+      {
             /*document.getElementById('fail').classList.remove('show');
             document.getElementById('fail').classList.add('hide');
             document.getElementById('success').classList.remove('hide');
@@ -50,13 +49,13 @@ const {ipcRenderer} = require('electron');
                   }
               });
 
-    	}
+      }
     });
 
     
   });
 
-  	//đăng nhập
+    //đăng nhập
     document.getElementById('sin').addEventListener('click', () => {
 
     var res = undefined;
@@ -76,7 +75,7 @@ const {ipcRenderer} = require('electron');
             confirmButtonColor: "#DD6B55"
         });
       }
-    	else
+      else
       {
 
         if (doc.Password.localeCompare(password) !== 0)
@@ -98,34 +97,37 @@ const {ipcRenderer} = require('electron');
       }
     });
 
-	});
+  });
 
 
-   	ipcRenderer.on('CreateUserReply', (event, arg)=>{
-   		console.log(arg);
-   	});
+    ipcRenderer.on('CreateUserReply', (event, arg)=>{
+      console.log(arg);
+    });
 
-document.getElementById('name').addEventListener('keyup', function() {
-     if (this.value.length > 1) {
-        
-     }
-});
+    document.getElementById('name').addEventListener('keyup', function() {
+         if (this.value.length > 1) {
+            
+         }
+    });
 
-document.getElementById('RePassword').addEventListener('keyup', function() {
-     if (this.value.length > 1) {
-        
-     }
-});
+    document.getElementById('RePassword').addEventListener('keyup', function() {
+         if (this.value.length > 1) {
+            
+         }
+    });
 
-document.getElementById('MC').addEventListener('keyup', function() {
-    console.log(formatDate(document.getElementById('PD').value));
-     if ((this.value < 1) || (this.value > 10)) {
-        console.log('sai');
-     }
-});
+    document.getElementById('MC').addEventListener('keyup', function() {
+        console.log(formatDate(document.getElementById('PD').value));
+         if ((this.value < 1) || (this.value > 10)) {
+            console.log('sai');
+         }
+    });
 
-document.getElementById('AP').addEventListener('keyup', function() {
-     if ((this.value < 1) || (this.value > 10)) {
-        
-     }
-});
+    document.getElementById('AP').addEventListener('keyup', function() {
+         if ((this.value < 1) || (this.value > 10)) {
+            
+         }
+    });
+}
+
+ 

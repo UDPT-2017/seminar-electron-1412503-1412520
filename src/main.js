@@ -63,3 +63,36 @@ ipcMain.on('LogOut', (event, arg) => {
 	}
 });
 
+ipcMain.on('DirectToHomePage', (event, arg) => {
+	mainWindow.loadURL(url.format({
+    	pathname: path.join(__dirname, 'home.html'),
+    	protocol: 'file:',
+    	slashes: true
+  		}));
+	mainWindow.webContents.on('did-finish-load', () => {
+   			mainWindow.webContents.send('DirectToHome', arg)
+  	})
+});
+
+ipcMain.on('DirectToPeriodInsertion', (event, arg) => {
+	mainWindow.loadURL(url.format({
+    	pathname: path.join(__dirname, 'themkykinh.html'),
+    	protocol: 'file:',
+    	slashes: true
+  		}));
+	mainWindow.webContents.on('did-finish-load', () => {
+		mainWindow.webContents.send('DirectToPeriodInsertionReply', arg);
+	})
+	
+});
+
+ipcMain.on('DirectToPeriodInfo', (event, arg) => {
+	mainWindow.loadURL(url.format({
+    	pathname: path.join(__dirname, 'chinhsuakykinh.html'),
+    	protocol: 'file:',
+    	slashes: true
+  		}));
+	mainWindow.webContents.on('did-finish-load', () => {
+		mainWindow.webContents.send('DirectToPeriodInfoReply', arg);
+	})
+});

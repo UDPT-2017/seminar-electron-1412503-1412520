@@ -58,21 +58,33 @@ exports.addPeriod = function(username, firstDay, lastDay, callback)
   var id = {Username: username, FirstDay: firstDay};
     var per = {
       "_id": periodIDs(id),      //chuyển object id thành chuỗi (để chuyển ngược _id thành id dùng periodIDs(_id))
-      "LastPeriod": lastDay,
+      "LastDay": lastDay,
     };
       period.put(per).then(function()
         {
-          if(callback)
             callback(null);
         }).catch(function(err){
-          if(callback)
             callback(err);
-            alert("Thêm thành công!");
-        });
-      period.allDocs({include_docs: true}).then(function (docs) {
-          console.log(docs);
         });
 };
+
+exports.getAllPeriod = function(username, callback)
+{
+    var periodIDs = docURI.route('periodIDs/:Username/:FirstDay');
+      // Get all period from the database
+      period.allDocs({include_docs: true}).then(function (docs) {
+        var res = [];
+        for ( i = 0; i < docs.total_rows; i++) {
+            start = periodIDs(docs.rows[i].doc._id);
+            id = {Username: username, FirstDay: start.FirstDay};
+            if(periodIDs(id).localeCompare(docs.rows[i].doc._id) === 0)
+              res.push(docs.rows[i].doc);
+          }
+          callback(res, null);
+      }).catch(function(err){
+          callback(null, err);
+      })
+}
 
 //yy-mm-dd to dd/mm/yy
 function yymmddToddmmyy(date){
@@ -110,7 +122,7 @@ function ddmmyyToyymmdd(date){
   exports.find_endday = function(username, start){
     period.get('periodIDs/'+username+'/'+ ddmmyyToyymmdd(start)).then(function(doc){
       //tìm ra ngày kết thúc
-      document.getElementById('end').value = yymmddToddmmyy(doc.LastPeriod);
+      document.getElementById('end').value = yymmddToddmmyy(doc.LastDay);
 
       //in ra kỳ kinh kèo dài
       var end = document.getElementById("end").value;
@@ -128,7 +140,7 @@ function ddmmyyToyymmdd(date){
   exports.updatePeriod = function(username, start, end){
     period.get('periodIDs/'+username+'/'+ ddmmyyToyymmdd(start))
       .then(function(doc) {
-        doc.LastPeriod = ddmmyyToyymmdd(end)
+        doc.LastDay = ddmmyyToyymmdd(end)
         return period.put(doc)   // put updated doc, will create new revision
       }).then(function (res) {
         alert("Cập nhật thành công!")

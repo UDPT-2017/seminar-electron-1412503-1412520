@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href= "../css/styles.css">
 	<link rel="stylesheet" href= "../css/bootstrap.css">
 	<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+	<link rel="stylesheet" type="text/css" href="../node_modules/sweetalert/dist/sweetalert.css">
 
 	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 
@@ -15,6 +16,7 @@
 	<script language="JavaScript" type="text/javascript" src="../js/bootstrap.js" charset="utf-8"></script>
 	<script src="../node_modules/pouchdb/dist/pouchdb.js"></script>
 	<script language="JavaScript" type="text/javascript" src="../db/themkykinh.js" charset="utf-8"></script>
+	<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
 
 	<script>if (window.module) module = window.module;</script>
 	<link href="../css/jquery-ui-1.10.1.css" rel="stylesheet">
@@ -24,13 +26,14 @@
 <body>
 	<div id=wrapper>
 			<div id="top-bar">
-				<a href="#"><i class="fa fa-user"></i></a>
+				<label id="username"></label><i class="fa fa-user"></i>
+				<i class="fa fa-sign-out" aria-hidden="true" id="logOut"></i>
 			</div>
 			<div id="side-nav">
 				<ul style="list-style:none">
-					<li><a href="home.html"><i class="fa fa-home"></i></a></li>
-					<li><a href="themkykinh.html"><i class="fa fa-list"></i></a></li>
-					<li><a href="chinhsuakykinh.html"><i class="fa fa-search"></i></a></li>
+					<li><a href="home.html"><i class="fa fa-home" id="homepage"></i></a></li>
+					<li><a href="themkykinh.html"><i class="fa fa-list" id="periodInsertion"></i></a></li>
+					<li><a href="chinhsuakykinh.html"><i class="fa fa-search" id="periodInfo"></i></a></li>
 				</ul>
 			</div>
       <div class="set-center">
