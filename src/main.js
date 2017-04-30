@@ -6,10 +6,7 @@ const path = require('path');
 const url = require('url');
 
 
-
-
 let mainWindow
-
 
 app.on('ready', _=>{
 	mainWindow = new BrowserWindow({
@@ -19,19 +16,16 @@ app.on('ready', _=>{
 	});
 
 	mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'logIn.html'),
+    pathname: path.join(__dirname, 'home.html'),
     protocol: 'file:',
     slashes: true
   }));
-
 
 
 	mainWindow.on('closed', _=>{
 		mainWindow = null;
 	})
 });
-
-
 
 ipcMain.on('CreateUser', (event, arg) => {
 	if (arg === 1)

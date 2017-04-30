@@ -17,7 +17,7 @@ exports.addUser = function(username, password, lastPeriod, mentsCycle, avgPeriod
     		callback(null);
     	}).catch(function(err){
     		callback(err);
-    	}); 
+    	});
 };
 
 exports.getUser = function(username, password, callback)
@@ -28,7 +28,7 @@ exports.getUser = function(username, password, callback)
     }).catch(function(err){
     	console.log(err);
     	return 0;
-    });                                                                                                                                                                                                 
+    });
 };
 
 exports.updateUser = function(username, newUsername, newPassword, newMentsCycle, newAvgPeriod)
@@ -46,11 +46,11 @@ exports.updateUser = function(username, newUsername, newPassword, newMentsCycle,
     }).catch(function(err){
     	console.log(err);
     	return 0;
-    });                                                                                                                                                                                                 
+    });
 };
 
 
-exports.addPeriod = function(username, firstDay, lastDay)
+exports.addPeriod = function(username, firstDay, lastDay, callback)
 {
 
   var periodIDs = docURI.route('periodIDs/:Username/:FirstDay');
@@ -59,13 +59,90 @@ exports.addPeriod = function(username, firstDay, lastDay)
       "_id": periodIDs(id),      //chuyển object id thành chuỗi (để chuyển ngược _id thành id dùng periodIDs(_id))
       "LastPeriod": lastDay,
     };
-
-    period.put(per).then(function()
-      {
-        callback(null);
-      }).catch(function(err){
-        callback(err);
-      }); 
+      period.put(per).then(function()
+        {
+          if(callback)
+            callback(null);
+        }).catch(function(err){
+          if(callback)
+            callback(err);
+            alert("Thêm thành công!");
+        });
+      period.allDocs({include_docs: true}).then(function (docs) {
+          console.log(docs);
+        });
 };
 
+//yy-mm-dd to dd/mm/yy
+function yymmddToddmmyy(date){
+  var x = date.split("-");
+  return (x[2] + '/' + x[1]  + '/' + x[0]);
+}
+//dd/mm/yy to yy-mm-dd
+function ddmmyyToyymmdd(date){
+  var x = date.split("/");
+  return (x[2] + '-' + x[1]  + '-' + x[0]);
+}
 
+//tất cả các kỳ kinh
+  exports.all_period = function(username) {
+      var periodIDs = docURI.route('periodIDs/:Username/:FirstDay');
+      // Get all period from the database
+      period.allDocs({include_docs: true}).then(function (docs) {
+          var all_start = '<option value="None" >-- Chọn kỳ kinh --</option>';
+          var i = 0;
+          var id;
+          var start;
+          // Generate the table body
+          for ( i = 0; i < docs.total_rows; i++) {
+            start = periodIDs(docs.rows[i].doc._id);
+            id = {Username: username, FirstDay: start.FirstDay};
+            if(periodIDs(id) == docs.rows[i].doc._id)
+              all_start += '<option id ="option" value="' + yymmddToddmmyy(start.FirstDay) + '">' + yymmddToddmmyy(start.FirstDay) +'</option>';
+          }
+          // Fill the table content
+          document.getElementById('all_start').innerHTML = all_start;
+        });
+};
+
+//tìm ngày kết thúc và kỳ kinh kéo dài
+  exports.find_endday = function(username, start){
+    period.get('periodIDs/'+username+'/'+ ddmmyyToyymmdd(start)).then(function(doc){
+      //tìm ra ngày kết thúc
+      document.getElementById('end').value = yymmddToddmmyy(doc.LastPeriod);
+
+      //in ra kỳ kinh kèo dài
+      var end = document.getElementById("end").value;
+      var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+      var x = start.split("/");
+      var y = end.split("/");
+      var s = new Date(x[2], x[1] - 1, x[0]);
+      var e = new Date(y[2], y[1] - 1, y[0]);
+      var kykinh = Math.round((e.getTime() - s.getTime())/oneDay) + 1;
+      document.getElementById("kykinh").innerHTML = kykinh;
+    });
+  };
+
+//chỉnh sửa kỳ kinh
+  exports.updatePeriod = function(username, start, end){
+    period.get('periodIDs/'+username+'/'+ ddmmyyToyymmdd(start))
+      .then(function(doc) {
+        doc.LastPeriod = ddmmyyToyymmdd(end)
+        return period.put(doc)   // put updated doc, will create new revision
+      }).then(function (res) {
+        alert("Cập nhật thành công!")
+        console.log(res)
+      })
+  }
+
+//Xóa kỳ kinh
+exports.deletePeriod = function(username, start){
+  period.get('periodIDs/'+username+'/'+ddmmyyToyymmdd(start))
+    .then(function (doc) {
+      doc._deleted = true
+      return period.put(doc)
+      alert("Xóa thành công!")
+    })
+}
+
+//period.destroy();
