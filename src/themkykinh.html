@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Thêm kỳ kinh</title>
+
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href= "../css/styles.css">
+	<link rel="stylesheet" href= "../css/bootstrap.css">
+	<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+
+	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+
+	<script language="JavaScript" type="text/javascript" src="../js/jquery.min.js" charset="utf-8"></script>
+	<script language="JavaScript" type="text/javascript" src="../js/bootstrap.js" charset="utf-8"></script>
+	<script src="../node_modules/pouchdb/dist/pouchdb.js"></script>
+	<script language="JavaScript" type="text/javascript" src="../db/themkykinh.js" charset="utf-8"></script>
+
+	<script>if (window.module) module = window.module;</script>
+	<link href="../css/jquery-ui-1.10.1.css" rel="stylesheet">
+	<link href="../css/lugo.datepicker.css" rel="stylesheet">
+
+</head>
+<body>
+	<div id=wrapper>
+			<div id="top-bar">
+				<a href="#"><i class="fa fa-user"></i></a>
+			</div>
+			<div id="side-nav">
+				<ul style="list-style:none">
+					<li><a href="home.html"><i class="fa fa-home"></i></a></li>
+					<li><a href="themkykinh.html"><i class="fa fa-list"></i></a></li>
+					<li><a href="chinhsuakykinh.html"><i class="fa fa-search"></i></a></li>
+				</ul>
+			</div>
+      <div class="set-center">
+        <h1 class="tit">Thêm kỳ kinh</h1>
+        <br>
+        <div class="date_style">
+            Ngày bắt đầu:
+						<input type="text" id="start" onChange="myFunction()"/>
+            <!-- <button type ="button">Chọn</button> -->
+            <span style="display:inline-block; width: 5%;"></span>
+            Ngày kết thúc:
+						<input type="text" id="end" onChange="myFunction()" disabled="disabled" />
+						<!-- <button type ="button">Chọn</button> -->
+          <br>  <br>
+          <p>Kỳ kinh kéo dài: <span class ="style_date" id="kykinh"></span> ngày</p>
+          <br> <br>
+          <button type ="button" id = "hoantat" disabled="disabled">Hoàn tất</button>
+          <br><br>
+        </div>
+      </div>
+
+			<script src="../js/jquery-1.9.1.js"></script>
+			<script src="../js/jquery-ui-1.10.1.min.js"></script>
+			<script type="text/javascript">
+			var d = new Date();
+			var today = (d.getDate()/d.getMonth()/d.getFullYear());
+			$(document).ready(
+			function () {
+				$( "#start" ).datepicker({
+					maxDate: today,
+					dateFormat: "dd/mm/yy",
+					onSelect : function(selected_date){
+						document.getElementById("end").disabled = false;		//enable ngày kết thúc
+						document.getElementById("hoantat").disabled = false;//enable button hoàn tất
+						var selectedDate = new Date(selected_date);
+
+						$("#end").datepicker( "option", "minDate", selected_date );	//end>start
+					 	$("#end").val(""); //set giá trị end về rỗng khi start thay đổi
+					 document.getElementById("kykinh").innerHTML = "";	//set giá trị kỳ kinh về rỗng khi start thay đổi
+					}
+				}).datepicker('widget').wrap('<div class="ll-skin-lugo"/>');
+				$('#end').datepicker({
+					dateFormat: "dd/mm/yy"
+				}).datepicker('widget').wrap('<div class="ll-skin-lugo"/>');
+			}
+			);
+			</script>
+
+</body>
+</html>
