@@ -13,7 +13,7 @@ ipcRenderer.on('DirectToHome', (event, arg) => {
 			var events = [];
 			for (var i= 0; i<docs.length; i++)
 			{
-				var event = {start:docs[i]. , allDay: true};
+				//var event = {start:docs[i]. , allDay: true};
 			}
 			console.log(docs);
 		}else
@@ -57,6 +57,6 @@ window.onload = function (){
 }
 
 function getEvents(docs){
-	
+
 }
 

@@ -86,16 +86,17 @@ exports.getAllPeriod = function(username, callback)
       })
 }
 
-//yy-mm-dd to dd/mm/yy
-function yymmddToddmmyy(date){
+
+
+
+yymmddToddmmyy = function(date){
   var x = date.split("-");
   return (x[2] + '/' + x[1]  + '/' + x[0]);
-}
-//dd/mm/yy to yy-mm-dd
-function ddmmyyToyymmdd(date){
+};
+ddmmyyToyymmdd = function(date){
   var x = date.split("/");
   return (x[2] + '-' + x[1]  + '-' + x[0]);
-}
+};
 
 //tất cả các kỳ kinh
   exports.all_period = function(username) {
