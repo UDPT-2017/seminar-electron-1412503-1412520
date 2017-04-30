@@ -62,3 +62,4 @@ ipcMain.on('LogOut', (event, arg) => {
   		}));
 	}
 });
+
