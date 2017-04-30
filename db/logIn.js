@@ -5,6 +5,7 @@ const {ipcRenderer} = require('electron');
 
 
 
+
   //đăng ký
   document.getElementById('lgin').addEventListener('click', () => {
 
@@ -30,10 +31,24 @@ const {ipcRenderer} = require('electron');
     	}
     	else
     	{
-            document.getElementById('fail').classList.remove('show');
+            /*document.getElementById('fail').classList.remove('show');
             document.getElementById('fail').classList.add('hide');
             document.getElementById('success').classList.remove('hide');
-            document.getElementById('success').classList.add('show');
+            document.getElementById('success').classList.add('show');*/
+            swal({
+              title: "Success!",
+              text: "You now have a brand new account!",
+              type: "success",
+              confirmButtonText: "Cool"
+              },
+                function(isConfirm){
+                  if (isConfirm)
+                  {
+                    console.log('kay');
+                    $('#myModal').modal('toggle');
+                    location.reload();
+                  }
+              });
 
     	}
     });
@@ -56,7 +71,7 @@ const {ipcRenderer} = require('electron');
     	}
     	else
     	{
-        database.addPeriod(username, '2017-04-24', '2017-04-28');
+        //database.addPeriod(username, '2017-04-24', '2017-04-28');
     		ipcRenderer.send('SignIn', doc);
     	}
     });
@@ -81,6 +96,7 @@ document.getElementById('RePassword').addEventListener('keyup', function() {
 });
 
 document.getElementById('MC').addEventListener('keyup', function() {
+    console.log(formatDate(document.getElementById('PD').value));
      if ((this.value < 1) || (this.value > 10)) {
         console.log('sai');
      }

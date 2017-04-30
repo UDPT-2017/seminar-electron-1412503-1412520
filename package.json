@@ -25,6 +25,7 @@
     "electron-connect": "^0.6.1",
     "electron-reload": "^1.1.0",
     "pouchdb": "^6.2.0",
-    "pouchdb-browser": "^6.2.0"
+    "pouchdb-browser": "^6.2.0",
+    "sweetalert": "^1.1.3"
   }
 }
