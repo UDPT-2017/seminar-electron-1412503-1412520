@@ -236,8 +236,6 @@ h4.modal-title{
 box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
 		margin-bottom: 20px;
 		}
-<<<<<<< HEAD
-=======
 
 /*phím mũi tên*/
 .fc button .fc-icon {
@@ -320,7 +318,7 @@ span.fc-day-number {
 .show{
 	display: block;
 }
-<<<<<<< HEAD
+
 
 /*chình hình event của lịch*/
 .fc-event {
@@ -335,6 +333,4 @@ span.fc-day-number {
 .fc-event, .fc-event-dot {
     background-color: white !important;
 }
-=======
->>>>>>> database-added
->>>>>>> 0d87ffcd51e190dda4b12792a5043bae1869b173
+

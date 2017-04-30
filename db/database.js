@@ -24,8 +24,9 @@ exports.getUser = function(username, password, callback)
 {
     user.get(username).then(function(doc)
     {
-    	callback(doc);
+    	callback(doc, null);
     }).catch(function(err){
+      callback(null, err);
     	console.log(err);
     	return 0;
     });

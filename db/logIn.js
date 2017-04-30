@@ -64,16 +64,38 @@ const {ipcRenderer} = require('electron');
     var username = document.getElementById('UserName').value;
     var password = document.getElementById('Password').value;
     
-    database.getUser(username, password, function(doc){
-    	if (doc.Password.localeCompare(password) !== 0)
-    	{
-    		ipcRenderer.send('SignIn', 0);
-    	}
+    database.getUser(username, password, function(doc, err){
+      if (err !== null)
+      {
+            ipcRenderer.send('SignIn', 0);
+            swal({
+            title: "Oops!!",
+            text: "You might mistype your username!",
+            type: "error",
+            confirmButtonText: "Try again",
+            confirmButtonColor: "#DD6B55"
+        });
+      }
     	else
-    	{
-        //database.addPeriod(username, '2017-04-24', '2017-04-28');
-    		ipcRenderer.send('SignIn', doc);
-    	}
+      {
+
+        if (doc.Password.localeCompare(password) !== 0)
+          {
+            ipcRenderer.send('SignIn', 0);
+            swal({
+            title: "Oops!!",
+            text: "You might mistype your password!",
+            type: "error",
+            confirmButtonText: "Try again",
+            confirmButtonColor: "#DD6B55"
+        });
+          }
+        else
+          {
+            //database.addPeriod(username, '2017-04-24', '2017-04-28');
+            ipcRenderer.send('SignIn', doc);
+          }
+      }
     });
 
 	});
