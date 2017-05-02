@@ -32,12 +32,22 @@ exports.getUser = function(username, password, callback)
     });
 };
 
-exports.updateUser = function(username, newUsername, newPassword, newMentsCycle, newAvgPeriod)
+exports.getAllRevUser = function(username, callback){
+  user.get(username, {revs: true, open_revs: 'all'}).then(function(doc)
+    {
+      callback(doc, null);
+    }).catch(function(err){
+      callback(null, err);
+      console.log(err);
+    });
+}
+
+exports.updateUser = function(username, newPassword, lastPeriod, newMentsCycle, newAvgPeriod)
 {
     user.get(username).then(function(doc)
     {
     	return user.put({
-    		_id: newUsername,
+        _id: username,
     		_rev: doc._rev,
     		Password: newPassword,
       		LastPeriod: lastPeriod,
@@ -85,6 +95,8 @@ exports.getAllPeriod = function(username, callback)
           callback(null, err);
       })
 }
+
+
 
 
 
