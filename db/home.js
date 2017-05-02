@@ -129,11 +129,11 @@ ipcRenderer.on('DirectToHome', (event, arg) => {
 	document.getElementById('username').innerHTML = uInfo._id;
 	
 	database.updateUser(uInfo._id, '1234', '2017-04-10', '23', '4');
-	database.getAllRevUser(uInfo._id, function(docs, err){
+	/*database.getAllRevUser(uInfo._id, function(docs, err){
 		
 		console.log('Các rev này: ');
 		console.log(docs);
-	});
+	});*/
 	
 
 	database.getAllPeriod(uInfo._id, function(docs, err){
