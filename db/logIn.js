@@ -117,10 +117,7 @@ window.onload = function (){
     });
 
     document.getElementById('MC').addEventListener('keyup', function() {
-        console.log(formatDate(document.getElementById('PD').value));
-         if ((this.value < 1) || (this.value > 10)) {
-            console.log('sai');
-         }
+        
     });
 
     document.getElementById('AP').addEventListener('keyup', function() {
