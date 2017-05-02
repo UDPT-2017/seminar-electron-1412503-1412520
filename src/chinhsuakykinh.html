@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Chỉnh sửa kỳ kinh</title>
+	<title>Edit period</title>
 
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href= "../css/styles.css">
 	<link rel="stylesheet" href= "../css/bootstrap.css">
 	<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+	<link rel="stylesheet" type="text/css" href="../node_modules/sweetalert/dist/sweetalert.css">
 
 	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 
@@ -24,42 +25,42 @@
 <body>
 	<div id=wrapper>
 			<div id="top-bar">
-				<label id="username"></label><i class="fa fa-user"></i>
-				<i class="fa fa-sign-out" aria-hidden="true" id="logOut"></i>
+				<label id="username"></label><a href="updateUser.html"><i class="fa fa-user" id="updateUser" title="Update user"></i></a>
+				<i class="fa fa-sign-out" aria-hidden="true" id="logOut" title="Logout"></i>
 			</div>
 			<div id="side-nav">
 				<ul style="list-style:none">
-					<li><a href="home.html"><i class="fa fa-home" id="homepage"></i></a></li>
-					<li><a href="themkykinh.html"><i class="fa fa-list" id="periodInsertion"></i></a></li>
-					<li><a href="chinhsuakykinh.html"><i class="fa fa-search" id="periodInfo"></i></a></li>
+					<li><a href="home.html"><i class="fa fa-home" id="homepage" title="Home"></i></a></li>
+					<li><a href="themkykinh.html"><i class="fa fa-plus-square" id="periodInsertion" title="Add period"></i></a></li>
+					<li><a href="chinhsuakykinh.html"><i class="fa fa-pencil-square-o" id="periodInfo" title="Edit period"></i></a></li>
 				</ul>
 			</div>
       <div class="set-center">
-        <h1 class="tit">Chỉnh sửa kỳ kinh</h1>
-        <br>
+        <h1 class="tit">Edit period</h1>
+        <br> <br>
         <div class="date_style">
-            Ngày bắt đầu:
+            Start:
 						<select id="all_start" onchange="selectFunction()"></select>
             <span style="display:inline-block; width: 5%;"></span>
-            Ngày kết thúc:
+            End:
 						<input type="text" id="end" onChange="myFunction()" disabled="disabled"/>
 						<!-- <button type ="button">Chọn</button> -->
           <br>  <br>
-          <p>Kỳ kinh kéo dài: <span class ="style_date" id="kykinh"></span> ngày</p>
-          <br> <br>
-          <button type ="button" id = "hoantat" disabled="disabled">Lưu thay đổi</button>
-					<button type ="button" id = "xoa" disabled="disabled">Xóa kỳ kinh</button>
+          <p>Period: <span class ="style_date" id="kykinh"></span> days</p>
+          <br>
+          <button type ="button" id = "hoantat" disabled="disabled">Save changes</button>
+					<button type ="button" id = "xoa" disabled="disabled">Delete period</button>
           <br><br>
         </div>
       </div>
 
 			<script src="../js/jquery-1.9.1.js"></script>
 			<script src="../js/jquery-ui-1.10.1.min.js"></script>
-			<script type="text/javascript">
+			<!-- <script type="text/javascript">
 				$('#end').datepicker({
 					dateFormat: "dd/mm/yy"
 				}).datepicker('widget').wrap('<div class="ll-skin-lugo"/>');
-			</script>
+			</script> -->
 
 			<script language="JavaScript" type="text/javascript" src="../db/chinhsuakykinh.js" charset="utf-8"></script>
 </body>

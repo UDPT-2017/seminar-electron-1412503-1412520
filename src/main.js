@@ -83,7 +83,7 @@ ipcMain.on('DirectToPeriodInsertion', (event, arg) => {
 	mainWindow.webContents.on('did-finish-load', () => {
 		mainWindow.webContents.send('DirectToPeriodInsertionReply', arg);
 	})
-	
+
 });
 
 ipcMain.on('DirectToPeriodInfo', (event, arg) => {
@@ -94,5 +94,16 @@ ipcMain.on('DirectToPeriodInfo', (event, arg) => {
   		}));
 	mainWindow.webContents.on('did-finish-load', () => {
 		mainWindow.webContents.send('DirectToPeriodInfoReply', arg);
+	})
+});
+
+ipcMain.on('DirectToUpdateUser', (event, arg) => {
+	mainWindow.loadURL(url.format({
+    	pathname: path.join(__dirname, 'updateUser.html'),
+    	protocol: 'file:',
+    	slashes: true
+  		}));
+	mainWindow.webContents.on('did-finish-load', () => {
+		mainWindow.webContents.send('DirectToUpdateUserReply', arg);
 	})
 });
