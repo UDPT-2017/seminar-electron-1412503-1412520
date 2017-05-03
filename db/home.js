@@ -5,15 +5,15 @@ var uInfo = undefined;
 var uPeriod = undefined;
 var periodIDs = docURI.route('periodIDs/:Username/:FirstDay');
 
-//kiểm tra tháng này người dùng đã thêm kỳ kinh nguyệt chưa
-function checkPeriod(){
-	var todayMonth = new Date().getMonth() + 1;
-	console.log(todayMonth);
+//kiểm tra trong tháng người dùng đã thêm kỳ kinh nguyệt chưa
+function checkPeriod(month){
+	//var todayMonth = new Date().getMonth() + 1;
+	//console.log(todayMonth);
 	var res = [];
 	var len = 15 + uInfo._id.length;
 	for(var i=0; i < uPeriod.length; i++)
 	{
-		if ((uPeriod[i]._id.search(todayMonth) > (len - 1)) && (uPeriod[i]._id.search(todayMonth) < (len + 4)))
+		if ((uPeriod[i]._id.search(month) > (len - 1)) && (uPeriod[i]._id.search(month) < (len + 4)))
 		{
 			res.push(uPeriod[i]);
 		}
@@ -77,6 +77,13 @@ function diffDate(date2, date1){
 	return diffDays;
 }
 
+function getHoursDiff(date2, date1)
+{
+	var timeDiff = Math.abs(date1.getTime() - date2.getTime());
+	var hours = Math.ceil(timeDiff / (60*60*1000));
+	return hours;
+}
+
 Date.prototype.addDays = function(days) {
   var dat = new Date(this.valueOf());
   dat.setDate(dat.getDate() + days);
@@ -85,7 +92,8 @@ Date.prototype.addDays = function(days) {
 
 //hiện thông tin ngày kinh nguyệt và dự đoán
 function updateOnScreen(){
-	var thisMonthPeriod =  checkPeriod();
+	var todayMonth = new Date().getMonth() + 1;
+	var thisMonthPeriod =  checkPeriod(todayMonth);
 	var tday = new Date();
 	var announcement = "";
 	if (thisMonthPeriod.length > 0)
@@ -100,27 +108,80 @@ function updateOnScreen(){
 			if (lDay >= tday)
 			{
 				var diffDays = diffDate(fDay, tday);
-				announcement = convertIntoOrder(diffDays);
+				announcement = convertIntoOrder(diffDays+1);
 				document.getElementById('note').innerHTML = announcement + " Day";
 			}
 			else
-			{
 				document.getElementById('note').innerHTML = diffDate(tday, nFirstDay) + " Days Till Your Next Period";
-			}
 		}
 		else
 		{
 			var diffDays = diffDate(fDay, tday);
-			announcement = convertIntoOrder(diffDays);
+			announcement = convertIntoOrder(diffDays+1);
 			document.getElementById('note').innerHTML = announcement + " Day";
 		}
 		document.getElementById('anticipate').innerHTML = "Next Period: " + moment(nFirstDay).format("ddd, MMMM Do YYYY");
 	}
 	else
 	{
-
-		console.log('no');
+		calculateDateDiff();
 	}
+}
+
+function calculateDateDiff()
+{
+	//var fDay = new Date(uInfo.LastPeriod);
+	var fDay = new Date("2017-04-10");
+	var tday = new Date();
+
+	var nFirstDay = fDay.addDays(Number(uInfo.MentsCycle));
+		console.log(nFirstDay);
+			console.log(tday);
+	if (getHoursDiff(nFirstDay, tday) < 24)
+	{
+		if (isNext2EachOther(tday, nFirstDay))
+			periodNext2EachOther(tday, nFirstDay);
+		else if (tday.getDate() === nFirstDay.getDate())
+			document.getElementById('note').innerHTML = "You're Supposed To Have Period On This Day >.<";
+	}
+	else if (getHoursDiff(nFirstDay, tday) < 48)
+	{
+		if (isNext2EachOther(tday, nFirstDay))
+			periodNext2EachOther(tday, nFirstDay);
+		else
+			periodDateDiff(nFirstDay, tday);
+	}
+	else
+	{
+		periodDateDiff(nFirstDay, tday);
+	}
+
+}
+
+function isNext2EachOther(date1, date2)
+{
+	return ((date1.getDate() == (date2.getDate() + 1)) || (date2.getDate() == (date1.getDate() + 1)));
+}
+
+function periodNext2EachOther(date1, date2)
+{
+	if (date1.getDate() == (date2.getDate() + 1))
+		document.getElementById('note').innerHTML = "You're Supposed To Have Period Yesterday >.<";
+	else if (date2.getDate() == (date1.getDate() + 1))
+		document.getElementById('note').innerHTML = "You May Have Your Period Tommorrow :D";
+}
+
+function periodDateDiff(date1, date2)
+{
+	if (date1 > date2)
+		{
+			document.getElementById('note').innerHTML = diffDate(date2, date1) + " Days Till Your Next Period";
+			document.getElementById('anticipate').innerHTML = "Next Period: " + moment(date1).format("ddd, MMMM Do YYYY");
+		}
+		else
+		{
+			document.getElementById('note').innerHTML = "You're Supposed To Have Period " + diffDate(date1, date2) + " Days Ago >.<";
+		}
 }
 
 ipcRenderer.on('DirectToHome', (event, arg) => {
@@ -128,12 +189,7 @@ ipcRenderer.on('DirectToHome', (event, arg) => {
 	uInfo = arg;
 	document.getElementById('username').innerHTML = uInfo._id;
 	
-	database.updateUser(uInfo._id, '1234', '2017-04-10', '23', '4');
-	/*database.getAllRevUser(uInfo._id, function(docs, err){
-		
-		console.log('Các rev này: ');
-		console.log(docs);
-	});*/
+	//database.updateUser(uInfo._id, '1234', '2017-04-10', '23', '4');
 	
 
 	database.getAllPeriod(uInfo._id, function(docs, err){

@@ -32,15 +32,15 @@ exports.getUser = function(username, password, callback)
     });
 };
 
-exports.getAllRevUser = function(username, callback){
-  user.get(username, {revs: true, open_revs: 'all'}).then(function(doc)
+/*exports.getAllRevUser = function(username, callback){
+  user.get(username, {revs: true, _rev: '5-33aff9ef43b069c2cd8e74b968e4531a', open_revs: 'all'}).then(function(doc)
     {
       callback(doc, null);
     }).catch(function(err){
       callback(null, err);
       console.log(err);
     });
-}
+}*/
 
 exports.updateUser = function(username, newPassword, lastPeriod, newMentsCycle, newAvgPeriod)
 {
