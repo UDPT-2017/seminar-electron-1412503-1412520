@@ -31,10 +31,17 @@ window.onload = function (){
     var x = $("#start").val();
     var y = $("#end").val();
 
+
+
     // var start = new Date(x[2], x[1] - 1, x[0]);
     // var end = new Date(y[2], y[1] - 1, y[0]);
     var start = convertDayFormat(x);
     var end = convertDayFormat(y);
+    
+    if(end === "/undefined/undefined"){
+        end=""
+    }
+
     console.log(start);
     console.log(end);
     // Save the person in the database
