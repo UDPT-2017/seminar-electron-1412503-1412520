@@ -96,15 +96,18 @@ function updateOnScreen(){
 	var thisMonthPeriod =  checkPeriod(todayMonth);
 	var tday = new Date();
 	var announcement = "";
+
 	if (thisMonthPeriod.length > 0)
 	{
 		var latestPerirod = findLatestPeriod(thisMonthPeriod);
 		var per = periodIDs(latestPerirod._id);
+		var fDay = new Date(per.FirstDay);
+		var nFirstDay = fDay.addDays(Number(uInfo.MentsCycle));
 		if (latestPerirod.LastDay !== "")
 		{
-			var fDay = new Date(per.FirstDay);
+			
 			var lDay = new Date(latestPerirod.LastDay);
-			var nFirstDay = fDay.addDays(Number(uInfo.MentsCycle));
+			
 			if (lDay >= tday)
 			{
 				var diffDays = diffDate(fDay, tday);
@@ -242,7 +245,7 @@ ipcRenderer.on('DirectToHome', (event, arg) => {
 		
 	}); })
 			updateOnScreen();
-			console.log(docs);
+			//console.log(docs);
 		}else
 		{
 			console.log(err);
@@ -290,32 +293,45 @@ function getEvents(docs){
 		
 		var obj = periodIDs(docs[i]._id);
 		var fDay = new Date(obj.FirstDay);
-		var lDay = new Date();
+		//var lDay = new Date();
 		if (docs[i].LastDay.localeCompare("") === 0)
 		{	
-			if ((fDay.getMonth() !== new Date().getMonth()) || (fDay.getFullYear() !== new Date().getFullYear()))
+			if ((fDay.getMonth() === new Date().getMonth()) && (fDay.getFullYear() === new Date().getFullYear()))
 			{
-				lDay.setDate(fDay.getDate() + Number(avgPeriod));
+				//lDay.setDate(fDay.getDate() + Number(uInfo.avgPeriod));
+				var lDay = new Date();
+				//lDay.setDate(docs[i].LastDay);
+				while (fDay.getDate() <= lDay.getDate())
+				{
+					events.push({start: fDay.toISOString().split('T')[0], allDay: true});
+					fDay.setDate(fDay.getDate() + 1);
+				}
 			}
-			/*for (var j=0; j<uInfo.avgPeriod; j++)
+			else
 			{
-				events.push({start: fDay.toISOString().split('T')[0], allDay: true});
-				fDay.setDate(fDay.getDate() + 1);
-			}*/
+				console.log(uInfo.AvgPeriod);
+				for (var j=0; j < Number(uInfo.AvgPeriod); j++)
+					{
+						events.push({start: fDay.toISOString().split('T')[0], allDay: true});
+						fDay.setDate(fDay.getDate() + 1);
+					}
+			}
+			
 		}
 		else
 		{
 			
-			//var lDay = new Date(docs[i].LastDay);
-			lDay.setDate(docs[i].LastDay);
-			
+			var lDay = new Date(docs[i].LastDay);
+			//lDay.setDate(docs[i].LastDay);
+			while (fDay.getDate() <= lDay.getDate())
+			{
+				events.push({start: fDay.toISOString().split('T')[0], allDay: true});
+				fDay.setDate(fDay.getDate() + 1);
+			}
 		}
-		while (fDay <= lDay)
-		{
-			events.push({start: fDay.toISOString().split('T')[0], allDay: true});
-			fDay.setDate(fDay.getDate() + 1);
-		}
+		
 	}
+	console.log(events);
 	return events;
 }
 
