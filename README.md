@@ -36,7 +36,6 @@ Các **chức năng của demo** đã thực hiện hoặc dự kiến thực hi
 * [x] Chỉnh sửa kinh nguyệt
 * [x] Chỉnh sửa thông tin người dùng
 * [x] Sử dụng ipcMain và ipcRenderer để chuyển và truyền thông tin giữa các trang
-* [ ] Bảo mật cơ sở dữ liệu sử dụng plugin của pouchdb
 
 ## Demo
 
