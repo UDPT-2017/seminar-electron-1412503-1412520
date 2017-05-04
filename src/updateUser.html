@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Add period</title>
+	<title>Update user</title>
 
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href= "../css/styles.css">
@@ -15,13 +15,10 @@
 	<script language="JavaScript" type="text/javascript" src="../js/jquery.min.js" charset="utf-8"></script>
 	<script language="JavaScript" type="text/javascript" src="../js/bootstrap.js" charset="utf-8"></script>
 	<script src="../node_modules/pouchdb/dist/pouchdb.js"></script>
-	<script language="JavaScript" type="text/javascript" src="../db/themkykinh.js" charset="utf-8"></script>
-	<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+	<script language="JavaScript" type="text/javascript" src="../db/updateUser.js" charset="utf-8"></script>
+
 
 	<script>if (window.module) module = window.module;</script>
-	<link href="../css/jquery-ui-1.10.1.css" rel="stylesheet">
-	<link href="../css/lugo.datepicker.css" rel="stylesheet">
-
 </head>
 <body>
 	<div id=wrapper>
@@ -37,29 +34,32 @@
 				</ul>
 			</div>
       <div class="set-center">
-        <h1 class="tit">Add period</h1>
-        <br><br>
+        <h1 class="tit">Update user</h1>
+        <br>
         <div class="date_style">
-            Start:
-						<input type="text" id="start" onChange="myFunction()"/>
-            <!-- <button type ="button">Chọn</button> -->
-            <span style="display:inline-block; width: 5%;"></span>
-            End:
-						<input type="text" id="end" onChange="myFunction()" disabled="disabled" />
-						<!-- <button type ="button">Chọn</button> -->
-          <br>  <br>
-          <p>Period: <span class ="style_date" id="kykinh"></span> days</p>
-          <br>
-          <button type ="button" id = "hoantat" disabled="disabled">Add</button>
+          <form>
+            Username:
+            <input id ="user_name" type="text" style="width: 200px" disabled="disabled">
+            <span style="display:inline-block; width: 10%;"></span>
+            Average Period:
+            <input id = "av_period" type="number" name="kykinh" min = 1 style="width: 50px;  text-align: center;"> days
+            <br> <br>
+            Password:
+            <input id="pass" type="password" style="width: 200px" >
+            <span style="display:inline-block; width: 9%;"></span>
+            Menstrual Cycle:
+            <input id="mens_cyc" type="number" name="chukykinh" min = 1 style="width: 50px;  text-align: center;" > days
+          </form>
+          <br> <br>
+          <button type ="button" id="hoantat">Save changes</button>
           <br><br>
         </div>
       </div>
 
-			<script src="../js/jquery-1.9.1.js"></script>
-			<script src="../js/jquery-ui-1.10.1.min.js"></script>
 			<!-- <script type="text/javascript">
+			$(document).ready(
 
-			</script> -->
-
+			} -->
+			<!-- </script> -->
 </body>
 </html>

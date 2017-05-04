@@ -52,7 +52,7 @@ window.onload = function (){
       }
     });
 
-    
+
   });
 
     //đăng nhập
@@ -62,7 +62,7 @@ window.onload = function (){
 
     var username = document.getElementById('UserName').value;
     var password = document.getElementById('Password').value;
-    
+
     database.getUser(username, password, function(doc, err){
       if (err !== null)
       {
@@ -106,25 +106,23 @@ window.onload = function (){
 
     document.getElementById('name').addEventListener('keyup', function() {
          if (this.value.length > 1) {
-            
+
          }
     });
 
     document.getElementById('RePassword').addEventListener('keyup', function() {
          if (this.value.length > 1) {
-            
+
          }
     });
 
     document.getElementById('MC').addEventListener('keyup', function() {
-        
+
     });
 
     document.getElementById('AP').addEventListener('keyup', function() {
          if ((this.value < 1) || (this.value > 10)) {
-            
+
          }
     });
 }
-
- 

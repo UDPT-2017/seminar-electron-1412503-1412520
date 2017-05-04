@@ -32,6 +32,7 @@ exports.getUser = function(username, password, callback)
     });
 };
 
+
 /*exports.getAllRevUser = function(username, callback){
   user.get(username, {revs: true, _rev: '5-33aff9ef43b069c2cd8e74b968e4531a', open_revs: 'all'}).then(function(doc)
     {
@@ -42,20 +43,22 @@ exports.getUser = function(username, password, callback)
     });
 }*/
 
-exports.updateUser = function(username, newPassword, lastPeriod, newMentsCycle, newAvgPeriod)
+
+exports.updateUser = function(username, newPassword, newMentsCycle, newAvgPeriod, callback)
 {
     user.get(username).then(function(doc)
     {
+      callback(null);
     	return user.put({
         _id: username,
     		_rev: doc._rev,
     		Password: newPassword,
-      		LastPeriod: lastPeriod,
-      		MentsCycle: newMentsCycle,
-      		AvgPeriod: newAvgPeriod
+      	MentsCycle: newMentsCycle,
+      	AvgPeriod: newAvgPeriod
   		});
     }).catch(function(err){
     	console.log(err);
+      callback(err);
     	return 0;
     });
 };
@@ -95,7 +98,6 @@ exports.getAllPeriod = function(username, callback)
           callback(null, err);
       })
 }
-
 
 
 
@@ -146,29 +148,41 @@ ddmmyyToyymmdd = function(date){
       var e = new Date(y[2], y[1] - 1, y[0]);
       var kykinh = Math.round((e.getTime() - s.getTime())/oneDay) + 1;
       document.getElementById("kykinh").innerHTML = kykinh;
+
+//tìm ngày kết thúc
+  exports.find_endday = function(username, start, callback){
+    period.get('periodIDs/'+username+'/'+ start).then(function(doc){
+      callback(doc.LastDay, null);
+    }).catch(function(err){
+        callback(null, err);
     });
   };
 
 //chỉnh sửa kỳ kinh
-  exports.updatePeriod = function(username, start, end){
-    period.get('periodIDs/'+username+'/'+ ddmmyyToyymmdd(start))
+  exports.updatePeriod = function(username, start, end, callback){
+    period.get('periodIDs/'+username+'/'+ start)
       .then(function(doc) {
-        doc.LastDay = ddmmyyToyymmdd(end)
-        return period.put(doc)   // put updated doc, will create new revision
-      }).then(function (res) {
-        alert("Cập nhật thành công!")
-        console.log(res)
-      })
+        doc.LastDay = end;
+        callback(null);
+        return period.put(doc) ;  // put updated doc, will create new revision
+      }).catch(function(err){
+      	console.log(err);
+        callback(err);
+      	return 0;
+      });
   }
 
 //Xóa kỳ kinh
-exports.deletePeriod = function(username, start){
-  period.get('periodIDs/'+username+'/'+ddmmyyToyymmdd(start))
+exports.deletePeriod = function(username, start, callback){
+  period.get('periodIDs/'+username+'/'+start)
     .then(function (doc) {
       doc._deleted = true
+      callback(null);
       return period.put(doc)
-      alert("Xóa thành công!")
-    })
+    }).catch(function(err){
+      callback(err);
+      return 0;
+    });
 }
 
 //period.destroy();
