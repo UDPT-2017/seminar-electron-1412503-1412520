@@ -97,7 +97,7 @@ exports.getAllPeriod = function(username, callback)
       }).catch(function(err){
           callback(null, err);
       })
-}
+};
 
 
 
@@ -170,7 +170,7 @@ ddmmyyToyymmdd = function(date){
         callback(err);
       	return 0;
       });
-  }
+  };
 
 //Xóa kỳ kinh
 exports.deletePeriod = function(username, start, callback){
@@ -183,6 +183,6 @@ exports.deletePeriod = function(username, start, callback){
       callback(err);
       return 0;
     });
-}
 
+};
 //period.destroy();
