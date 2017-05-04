@@ -263,7 +263,9 @@ window.onload = function (){
 		ipcRenderer.send('DirectToPeriodInfo', uInfo)
 	});
 
-
+	document.getElementById('updateUser').addEventListener('click', () => {
+	      ipcRenderer.send('DirectToUpdateUser', uInfo);
+	});
 
 	document.getElementById('logOut').addEventListener('click', () => {
 		swal({
