@@ -13,23 +13,30 @@ URL: https://thikhin96.github.io/
 Sinh viên check vào các mục bên dưới và ghi mã sinh viên đã làm vào chức năng theo mẫu. Mục nào ko có MSSV là tính điểm theo nhóm. Cần sắp xếp các chức năng bên dưới theo thứ tự MSSV đã thực hiện.
 
 Yêu cầu **GIT**
-* [ ] Có sử dụng GIT.
-* [ ] Sử dụng GIT theo Centralized Workflow.
-* [ ] Sử dụng GIT theo Feature Branch Workflow.
+* [x] Có sử dụng GIT.
+* [x] Sử dụng GIT theo Centralized Workflow.
+* [x] Sử dụng GIT theo Feature Branch Workflow.
 * [ ] Sử dụng GIT theo Gitflow Workflow.
 
 Yêu cầu **bắt buộc**
-* [ ] Source code demo
+* [x] Source code demo
 * [ ] Slide thuyết trình
-* [ ] Tạo github page để viết lại báo cáo cho nội dung đề tài tìm hiểu
+* [x] Tạo github page để viết lại báo cáo cho nội dung đề tài tìm hiểu
 
 Các **nội dung lý thuyết** dự định tìm hiểu. Nhóm liệt kê các nội dung đã làm được vào bên dưới và check vào các nội dung đã tìm hiểu được.
 * [ ] Nội dung 1
 * [ ] Nội dung 2
 
 Các **chức năng của demo** đã thực hiện hoặc dự kiến thực hiện. Nhóm check vào các chức năng đã làm
-* [ ] Chức năng 1
-* [ ] Chức năng 2
+* [x] Tạo tài khoản
+* [x] Đăng nhập/ Đăng xuất
+* [x] Màn hình trang chủ hiện thông tin kinh nguyện, dự đoán và các thông báo về kinh nguyệt (ngày kinh thứ mấy, trễ bao nhiêu ngày)
+* [x] Bấm F5 để refresh chương trình, bấm F12 để mở dev-tool
+* [x] Màn hình thêm kinh nguyệt
+* [x] Chỉnh sửa kinh nguyệt
+* [x] Chỉnh sửa thông tin người dùng
+* [x] Sử dụng ipcMain và ipcRenderer để chuyển và truyền thông tin giữa các trang
+* [ ] Bảo mật cơ sở dữ liệu sử dụng plugin của pouchdb
 
 ## Demo
 
