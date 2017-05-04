@@ -35,7 +35,6 @@ function findLatestPeriod(periods){
 			var date2 = new Date(obj2.FirstDay);
 			if (date2 > date1)
 			{
-				console.log('haha');
 				res = periods[j];
 			}
 		}
@@ -72,8 +71,9 @@ function convertIntoOrder(num){
 }
 
 function diffDate(date2, date1){
-	var timeDiff = Math.abs(date1.getTime() - date2.getTime());
-	var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+	//var timeDiff = Math.abs(date1.getTime() - date2.getTime());
+	//var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+	var diffDays = date1.getDate() - date2.getDate();
 	return diffDays;
 }
 
@@ -130,32 +130,61 @@ function updateOnScreen(){
 
 function calculateDateDiff()
 {
-	//var fDay = new Date(uInfo.LastPeriod);
-	var fDay = new Date("2017-04-10");
-	var tday = new Date();
+	var lFDay = getLastPeriodFDay();
+	if (lFDay !== null)
+	{
+		var fDay = new Date(lFDay);
+		var tday = new Date();
 
-	var nFirstDay = fDay.addDays(Number(uInfo.MentsCycle));
-		console.log(nFirstDay);
+		var nFirstDay = fDay.addDays(Number(uInfo.MentsCycle));
+			console.log(nFirstDay);
 			console.log(tday);
-	if (getHoursDiff(nFirstDay, tday) < 24)
-	{
-		if (isNext2EachOther(tday, nFirstDay))
-			periodNext2EachOther(tday, nFirstDay);
-		else if (tday.getDate() === nFirstDay.getDate())
-			document.getElementById('note').innerHTML = "You're Supposed To Have Period On This Day >.<";
-	}
-	else if (getHoursDiff(nFirstDay, tday) < 48)
-	{
-		if (isNext2EachOther(tday, nFirstDay))
-			periodNext2EachOther(tday, nFirstDay);
+		if (getHoursDiff(nFirstDay, tday) < 24)
+		{
+			if (isNext2EachOther(tday, nFirstDay))
+				periodNext2EachOther(tday, nFirstDay);
+			else if (tday.getDate() === nFirstDay.getDate())
+				document.getElementById('note').innerHTML = "You're Supposed To Have Period On This Day >.<";
+		}
+		else if (getHoursDiff(nFirstDay, tday) < 48)
+		{
+			if (isNext2EachOther(tday, nFirstDay))
+				periodNext2EachOther(tday, nFirstDay);
+			else
+				periodDateDiff(nFirstDay, tday);
+		}
 		else
+		{
 			periodDateDiff(nFirstDay, tday);
+		}
 	}
 	else
 	{
-		periodDateDiff(nFirstDay, tday);
+		document.getElementById('note').innerHTML = "There's Nothing To Show.";
+		document.getElementById('anticipate').innerHTML = "Please Add Your Period Information :)";
 	}
+}
 
+//tìm ngày kinh đầu gần nhất mà người dùng đã thêm vào
+function getLastPeriodFDay(){
+	if (uInfo.LastPeriod !== "")
+	{
+		var lMonth = new Date().getMonth();
+		var lFDay = new Date(uInfo.LastPeriod);
+		while (checkPeriod(lMonth).length === 0)
+		{
+			lMonth -= 1;
+			if (lMonth === lFDay.getMonth())
+			{
+				return uInfo.latestPerirod;
+			}
+		}
+		var per = findLatestPeriod(checkPeriod(lMonth));
+		var obj = periodIDs(per._id);
+		return obj.FirstDay;
+	}
+	else
+		return null;
 }
 
 function isNext2EachOther(date1, date2)
@@ -261,23 +290,30 @@ function getEvents(docs){
 		
 		var obj = periodIDs(docs[i]._id);
 		var fDay = new Date(obj.FirstDay);
+		var lDay = new Date();
 		if (docs[i].LastDay.localeCompare("") === 0)
 		{	
-			for (var j=0; j<uInfo.avgPeriod; j++)
+			if ((fDay.getMonth() !== new Date().getMonth()) || (fDay.getFullYear() !== new Date().getFullYear()))
 			{
-				events.push({start: fDay.toISOString().split('T')[0], allDay: true,})
-				fDay.setDate(fDay.getDate() + 1);
+				lDay.setDate(fDay.getDate() + Number(avgPeriod));
 			}
+			/*for (var j=0; j<uInfo.avgPeriod; j++)
+			{
+				events.push({start: fDay.toISOString().split('T')[0], allDay: true});
+				fDay.setDate(fDay.getDate() + 1);
+			}*/
 		}
 		else
 		{
 			
-			var lDay = new Date(docs[i].LastDay);
-			while (fDay <= lDay)
-			{
-				events.push({start: fDay.toISOString().split('T')[0], allDay: true,})
-				fDay.setDate(fDay.getDate() + 1);
-			}
+			//var lDay = new Date(docs[i].LastDay);
+			lDay.setDate(docs[i].LastDay);
+			
+		}
+		while (fDay <= lDay)
+		{
+			events.push({start: fDay.toISOString().split('T')[0], allDay: true});
+			fDay.setDate(fDay.getDate() + 1);
 		}
 	}
 	return events;
