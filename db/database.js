@@ -133,22 +133,6 @@ ddmmyyToyymmdd = function(date){
         });
 };
 
-//tìm ngày kết thúc và kỳ kinh kéo dài
-  exports.find_endday = function(username, start){
-    period.get('periodIDs/'+username+'/'+ ddmmyyToyymmdd(start)).then(function(doc){
-      //tìm ra ngày kết thúc
-      document.getElementById('end').value = yymmddToddmmyy(doc.LastDay);
-
-      //in ra kỳ kinh kèo dài
-      var end = document.getElementById("end").value;
-      var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
-      var x = start.split("/");
-      var y = end.split("/");
-      var s = new Date(x[2], x[1] - 1, x[0]);
-      var e = new Date(y[2], y[1] - 1, y[0]);
-      var kykinh = Math.round((e.getTime() - s.getTime())/oneDay) + 1;
-      document.getElementById("kykinh").innerHTML = kykinh;
-
 //tìm ngày kết thúc
   exports.find_endday = function(username, start, callback){
     period.get('periodIDs/'+username+'/'+ start).then(function(doc){
