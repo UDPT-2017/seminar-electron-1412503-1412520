@@ -19,46 +19,117 @@ ddmmyyToyymmdd = function(date){
   return (x[2] + '-' + x[1]  + '-' + x[0]);
 };
 
+function convertDaytoCompareD(date){
+  var x = date.split("/");
+  return (new Date(x[2], x[1]-1, x[0])).getTime();
+}
+
+function convertDaytoCompareY(date){
+  var x = date.split("-");
+  return (new Date(x[0], x[1]-1, x[2])).getTime()
+}
+
   //tính chu kỳ kinh kéo dài
   function myFunction() {
+    if(($("#end").val())===""){
+      document.getElementById("kykinh").innerHTML = "";
+    }
+    else {
     var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
     var x = $("#all_start").val().split("/");
     var y = $("#end").val().split("/");
-
-    var start = new Date(x[2], x[1] - 1, x[0]);
-    var end = new Date(y[2], y[1] - 1, y[0]);
-    var kykinh = Math.round((end.getTime() - start.getTime())/oneDay) + 1;
-    document.getElementById("kykinh").innerHTML = kykinh;
+      var start = new Date(x[2], x[1] - 1, x[0]);
+      var end = new Date(y[2], y[1] - 1, y[0]);
+      var kykinh = Math.round((end.getTime() - start.getTime())/oneDay) + 1;
+      document.getElementById("kykinh").innerHTML = kykinh;
+    }
   }
 
+  function cancelEdit(){
+    window.location.reload(true);
+  }
 
 window.onload = function() {
 
+    document.getElementById('cancelEdit').addEventListener('click', () => {
+      $("#all_start").val("-- Select period --");
+      document.getElementById("kykinh").innerHTML = "";
+      document.getElementById("end").value = "";
+      document.getElementById("end").disabled = true;
+      document.getElementById("hoantat").disabled = true;
+      document.getElementById("xoa").disabled = true;
+    })
+
      //Lưu thay đổi
     document.getElementById('hoantat').addEventListener('click', () => {
-      var x = ddmmyyToyymmdd($("#all_start").val());
-      var y = ddmmyyToyymmdd($("#end").val());
-      database.updatePeriod(uInfo._id, x, y, function(err){
-        if (err !== null)
-        {
-          swal({
-              title: "Oops!!",
-              text: "Failed to update period!!",
-              type: "error",
-              confirmButtonText: "Try again",
-              confirmButtonColor: "#DD6B55"
-          });
-        }
-        else
-        {
-           swal({
-                title: "Success!",
-                text: "!",
-                type: "success",
-                confirmButtonText: "Cool"
+      var x = $("#all_start").val();
+      var y = $("#end").val();
+      var end = "";
+      var kq = 1;
+      database.getAllPeriod(uInfo._id, function(res, err){
+          var tam1 = convertDaytoCompareD(x);
+          var periodIDs = docURI.route('periodIDs/:Username/:FirstDay');
+          outloop:
+          for (var i = 0; i <res.length; i++){
+            var s = convertDaytoCompareY(periodIDs(res[i]._id).FirstDay);
+
+            if(res[i].LastDay !==""){
+              var e = convertDaytoCompareY(res[i].LastDay);
+              if(tam1 > s && tam1 <= e){
+                kq = 0;
+                break outloop;
+              }
+            }
+
+            if(y!==""){
+              var tam2 = convertDaytoCompareD(y);
+              if(s>tam1 && s<=tam2){
+                kq = 0;
+                break outloop;
+              }
+            }
+          }
+
+          if(kq===1){
+            x = ddmmyyToyymmdd(x);
+            if(y!==""){
+                y = ddmmyyToyymmdd(y);
+            }
+            // Update
+            database.updatePeriod(uInfo._id, x, y, function(err){
+              if (err !== null)
+              {
+                swal({
+                    title: "Oops!!",
+                    text: "Failed to update period!!",
+                    type: "error",
+                    confirmButtonText: "Try again",
+                    confirmButtonColor: "#DD6B55"
                 });
-        }
-      });
+              }
+              else
+              {
+                 swal({
+                      title: "Success!",
+                      text: "!",
+                      type: "success",
+                      confirmButtonText: "Cool"
+                      });
+              }
+            });
+          }
+          else{
+            swal({
+                title: "Overlap period",
+                text: "Failed to update period!!",
+                type: "error",
+                confirmButtonText: "Try again",
+                confirmButtonColor: "#DD6B55"
+            });
+          }
+
+      })
+
     })
 
     //Xóa kỳ kinh
@@ -130,7 +201,6 @@ window.onload = function() {
         document.getElementById('end').value = yymmddToddmmyy(res);
 
         //in ra kỳ kinh kèo dài
-        console.log(res);
         if(res!==""){
           var end = document.getElementById("end").value;
           var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
@@ -159,10 +229,10 @@ window.onload = function() {
 
 
 ipcRenderer.on('DirectToPeriodInfoReply', (event, arg) => {
-  console.log(arg);
+
   uInfo = arg;
   document.getElementById('username').innerHTML = uInfo._id;
-  console.log(uInfo._id);
+  //console.log(uInfo._id);
   database.getAllPeriod(uInfo._id, function(res, err){
     if (err === null)
     {
