@@ -8,6 +8,9 @@ var uInfo = undefined;
 
 
 window.onload = function(){
+  document.getElementById('cancelUpdate').addEventListener('click', () => {
+  window.location.reload();
+  })
 
 document.getElementById('hoantat').addEventListener('click',()=>{
   var pass = document.getElementById("pass").value;
