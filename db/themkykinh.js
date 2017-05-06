@@ -137,7 +137,7 @@ window.onload = function (){
           else{
             swal({
               title: "Overlap period",
-              text: "Failed to update period!!",
+              text: "Failed to add period!!",
                 type: "error",
                 confirmButtonText: "Try again",
                 confirmButtonColor: "#DD6B55"
@@ -187,7 +187,7 @@ window.onload = function (){
 }
 
 ipcRenderer.on('DirectToPeriodInsertionReply', (event, arg) => {
-  //console.log(arg);
+  // console.log(arg);
   uInfo = arg;
   document.getElementById('username').innerHTML = uInfo._id;
 });
