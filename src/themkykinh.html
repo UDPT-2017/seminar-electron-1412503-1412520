@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add period</title>
+
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href= "../css/styles.css">
+	<link rel="stylesheet" href= "../css/bootstrap.css">
+	<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+	<link rel="stylesheet" type="text/css" href="../node_modules/sweetalert/dist/sweetalert.css">
+
+	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+
+	<script language="JavaScript" type="text/javascript" src="../js/jquery.min.js" charset="utf-8"></script>
+	<script language="JavaScript" type="text/javascript" src="../js/bootstrap.js" charset="utf-8"></script>
+	<script src="../node_modules/pouchdb/dist/pouchdb.js"></script>
+	<script language="JavaScript" type="text/javascript" src="../db/themkykinh.js" charset="utf-8"></script>
+	<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+
+	<script>if (window.module) module = window.module;</script>
+	<link href="../css/jquery-ui-1.10.1.css" rel="stylesheet">
+	<link href="../css/lugo.datepicker.css" rel="stylesheet">
+
+</head>
+<body>
+	<div id=wrapper>
+			<div id="top-bar">
+				<label id="username"></label><i class="fa fa-user" id="updateUser" title="Update user"></i></a>
+				<i class="fa fa-sign-out" aria-hidden="true" id="logOut" title="Logout"></i>
+			</div>
+			<div id="side-nav">
+				<ul style="list-style:none">
+					<li><a href="home.html"><i class="fa fa-home" id="homepage" title="Home"></i></a></li>
+					<li><a href="themkykinh.html"><i class="fa fa-plus-square" id="periodInsertion" title="Add period"></i></a></li>
+					<li><a href="chinhsuakykinh.html"><i class="fa fa-pencil-square-o" id="periodInfo" title="Edit period"></i></a></li>
+				</ul>
+			</div>
+      <div class="set-center">
+        <h1 class="tit">Add period</h1>
+        <br><br>
+        <div class="date_style">
+            Start:
+						<input type="text" id="start" onChange="myFunction()"/>
+            <!-- <button type ="button">Chọn</button> -->
+            <span style="display:inline-block; width: 5%;"></span>
+            End:
+						<input type="text" id="end" onChange="myFunction()" disabled="disabled" />
+						<!-- <button type ="button">Chọn</button> -->
+          <br>  <br>
+          <p>Period: <span class ="style_date" id="kykinh"></span> days</p>
+          <br>
+          <button type ="button" id = "hoantat" disabled="disabled">Add</button>
+					<button type ="button" id = "cancelAdd" >Cancel</button>
+          <br><br>
+        </div>
+      </div>
+
+			<script src="../js/jquery-1.9.1.js"></script>
+			<script src="../js/jquery-ui-1.10.1.min.js"></script>
+			<!-- <script type="text/javascript">
+
+			</script> -->
+
+</body>
+</html>

@@ -1,4 +1,4 @@
-html, 
+html,
 body {
     height: 100%;
 }
@@ -99,16 +99,29 @@ h4.modal-title{
 	text-align: right;
 	padding: 12px;
 	background-color: #f5f5f5;
-	height: 40px;
+	height: 50px;
 	position: absolute;
 	left: 71px;
 	top: 0;
 	right: 0;
 }
 
-#top-bar a{
-	font-size: 1.8rem;
+#username{
+	font-size:18px;
+	margin-right: 8px;
 }
+
+
+#top-bar .fa{
+	font-size: 26px;
+	margin-right: 8px;
+}
+
+#top-bar .fa:hover{
+	color: #89cff0;
+}
+
+
 
 #side-nav a{
 	font-size: 3rem;
@@ -118,6 +131,7 @@ h4.modal-title{
 #side-nav a:hover{
 	color: #52affb;
 }
+
 
 #side-nav ul{
 	list-style: none;
@@ -137,8 +151,58 @@ h4.modal-title{
 
 #mainHome{
 	position: absolute;
-	top: 65px; 
+	top: 65px;
 	left: 100px;
+	border-right: 2px dashed;
+}
+
+#rightNote{
+  position: absolute;
+  top: 65px;
+  left: 850px;
+  right: 15px;
+  height: 40%;
+      box-shadow: 0 1px 2px #C3C3C3;
+    -webkit-box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
+    -moz-box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
+    box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
+    border-radius: 7px;
+}
+
+/*//////////////////////////////////////*/
+.tit{
+  font-family: times;
+  font-weight: bold;
+}
+
+#start, #end, #all_start{
+  text-align: center;
+  width: 213px;
+  height: 35px;
+}
+
+#user-pass{
+  min-width: 300px;
+  max-width:300px;
+  border:1px solid black;
+}
+
+.set-center{
+  top:60px;
+  text-align: center;
+  margin-left: 13%;
+  margin-right: auto;
+	width: 1000px;
+  position: absolute;
+  background-color: #b3daff;
+}
+
+.date_style{
+  font-size: 25px;
+  font-family: times;
+}
+#hoantat, #xoa, #cancelAdd, #cancelEdit, #cancelUpdate{
+  font-weight: bold;
 }
 
 /*--------Calendar-zone-----*/
@@ -148,13 +212,13 @@ h4.modal-title{
 		padding: 0 10px;
 		text-align: left;
 		}
-		
+
 	#external-events h4 {
 		font-size: 16px;
 		margin-top: 0;
 		padding-top: 1em;
 		}
-		
+
 	.external-event { /* try to mimick the look of a real event */
 		margin: 10px 0;
 		padding: 2px 4px;
@@ -163,13 +227,13 @@ h4.modal-title{
 		font-size: .85em;
 		cursor: pointer;
 		}
-		
+
 	#external-events p {
 		margin: 1.5em 0;
 		font-size: 11px;
 		color: #666;
 		}
-		
+
 	#external-events p input {
 		margin: 0;
 		vertical-align: middle;
@@ -178,7 +242,7 @@ h4.modal-title{
 	#calendar {
 /* 		float: right; */
         margin: 0 auto;
-		max-width: 1000px;
+		max-width: 706px;
 		background-color: #FFFFFF;
 		  border-radius: 6px;
         box-shadow: 0 1px 2px #C3C3C3;
@@ -187,3 +251,101 @@ h4.modal-title{
 box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
 		margin-bottom: 20px;
 		}
+
+
+/*phím mũi tên*/
+.fc button .fc-icon {
+    position: relative;
+    top: -0.04em;
+    margin: 0 .2em;
+    vertical-align: middle;
+    right: 0.3em;}
+
+
+/*hình tròn bên ngoài*/
+ .btn-prev, .btn-next {
+       border: 2px solid #cbd1d2;
+    border-radius: 50%;
+    color: #cbd1d2;
+    width: 3em;
+    height: 3em;
+    margin-left: 10px;
+}
+
+.fc .fc-button-group > :first-child {
+       border: 2px solid #cbd1d2;
+    border-radius: 50%;
+    color: #cbd1d2;
+    width: 3em;
+    height: 3em;
+    margin-right: 10px;
+}
+
+.fc .fc-button-group > * {
+    float: left;
+    margin: 0 0 0 -1px;
+           border: 2px solid #cbd1d2;
+    border-radius: 50% !important;
+    color: #cbd1d2;
+    width: 3em;
+    height: 3em;
+    margin-left: 10px;
+}
+
+.fc-today-button {
+	margin: 6.5px !important;
+}
+
+.fc-content-skeleton .fc-day-top:hover span.fc-day-number {
+    background-color: #B8B8B8;
+    border-radius: 50%;
+    color: #FFFFFF;
+    transition: background-color 0.2s;
+}
+
+.fc-toolbar.fc-header-toolbar {
+    padding: 15px;
+}
+
+
+.fc-head {
+	background-color: #89cff0;
+	color: white;
+}
+
+.fc th, .fc td {
+	padding: 2px !important;
+}
+
+span.fc-day-number {
+    font-size: 15px;
+    margin: 2px;
+    min-width: 19px;
+    padding: 6px;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+}
+
+.hide{
+	display: none;
+}
+
+.show{
+	display: block;
+}
+
+
+/*chình hình event của lịch*/
+.fc-event {
+	border-radius: 50% !important;
+	height: 25px !important;
+    width: 25px !important;
+    text-align: center !important;
+    border: 2px solid #77DD77 !important;
+}
+
+/*chỉnh nền của event*/
+.fc-event, .fc-event-dot {
+    background-color: white !important;
+}
