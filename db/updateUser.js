@@ -48,6 +48,9 @@ document.getElementById('hoantat').addEventListener('click',()=>{
 		function(isConfirm){
 			if (isConfirm)
 			{
+        uInfo = null;
+        uPeriod = null;
+        database.closeConnection();
 				console.log('kay');
 				ipcRenderer.send('LogOut', 1);
 			}
@@ -68,7 +71,7 @@ document.getElementById('hoantat').addEventListener('click',()=>{
   });
 }
 
-ipcRenderer.on('DirectToUpdateUserReply', (event, arg) => {
+ipcRenderer.once('DirectToUpdateUserReply', (event, arg) => {
   uInfo = arg;
   document.getElementById('username').innerHTML = uInfo._id;
   database.getUser(uInfo._id, "", function(doc, err){

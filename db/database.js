@@ -170,3 +170,8 @@ exports.deletePeriod = function(username, start, callback){
 
 };
 //period.destroy();
+
+exports.closeConnection = function(){
+ /* period.close();
+  user.close();*/
+}

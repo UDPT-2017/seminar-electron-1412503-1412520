@@ -71,9 +71,9 @@ function convertIntoOrder(num){
 }
 
 function diffDate(date2, date1){
-	//var timeDiff = Math.abs(date1.getTime() - date2.getTime());
-	//var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
-	var diffDays = date1.getDate() - date2.getDate();
+	var timeDiff = Math.abs(date1.getTime() - date2.getTime());
+	var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+	//var diffDays = date1.getDate() - date2.getDate();
 	return diffDays;
 }
 
@@ -170,9 +170,10 @@ function calculateDateDiff()
 
 //tìm ngày kinh đầu gần nhất mà người dùng đã thêm vào
 function getLastPeriodFDay(){
-	if (uInfo.LastPeriod !== "")
+	var lMonth = new Date().getMonth();
+	if ((uInfo.LastPeriod !== "") && (uPeriod.length !== 0))
 	{
-		var lMonth = new Date().getMonth();
+
 		var lFDay = new Date(uInfo.LastPeriod);
 		while (checkPeriod(lMonth).length === 0)
 		{
@@ -186,8 +187,22 @@ function getLastPeriodFDay(){
 		var obj = periodIDs(per._id);
 		return obj.FirstDay;
 	}
+	else if (uInfo.LastPeriod !== "")
+	{
+		return uInfo.latestPerirod;
+	}
+	else if (uPeriod.length !== 0)
+	{
+		while (checkPeriod(lMonth).length === 0)
+			lMonth -= 1;
+		var per = findLatestPeriod(checkPeriod(lMonth));
+		var obj = periodIDs(per._id);
+		return obj.FirstDay;
+	}
 	else
-		return null;
+	{
+		return null;	
+	}
 }
 
 function isNext2EachOther(date1, date2)
@@ -217,7 +232,7 @@ function periodDateDiff(date1, date2)
 }
 
 ipcRenderer.on('DirectToHome', (event, arg) => {
-	//console.log(arg);
+	console.log(arg);
 	uInfo = arg;
 	document.getElementById('username').innerHTML = uInfo._id;
 	
@@ -325,7 +340,7 @@ function getEvents(docs){
 			
 			var lDay = new Date(docs[i].LastDay);
 			//lDay.setDate(docs[i].LastDay);
-			while (fDay.getDate() <= lDay.getDate())
+			while (fDay <= lDay)
 			{
 				events.push({start: fDay.toISOString().split('T')[0], allDay: true});
 				fDay.setDate(fDay.getDate() + 1);
@@ -333,7 +348,6 @@ function getEvents(docs){
 		}
 		
 	}
-	console.log(events);
 	return events;
 }
 

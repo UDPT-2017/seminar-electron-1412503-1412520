@@ -121,6 +121,8 @@ h4.modal-title{
 	color: #89cff0;
 }
 
+
+
 #side-nav a{
 	font-size: 3rem;
 	color: #555;
@@ -129,6 +131,7 @@ h4.modal-title{
 #side-nav a:hover{
 	color: #52affb;
 }
+
 
 #side-nav ul{
 	list-style: none;
