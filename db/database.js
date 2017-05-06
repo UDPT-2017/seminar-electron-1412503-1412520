@@ -85,7 +85,7 @@ exports.getAllPeriod = function(username, callback)
 {
     var periodIDs = docURI.route('periodIDs/:Username/:FirstDay');
       // Get all period from the database
-      period.allDocs({include_docs: true}).then(function (docs) {
+      period.allDocs({include_docs: true, descending: true}).then(function (docs) {
         var res = [];
         for ( i = 0; i < docs.total_rows; i++) {
             start = periodIDs(docs.rows[i].doc._id);

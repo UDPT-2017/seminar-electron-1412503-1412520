@@ -3,6 +3,7 @@ const jquery = require('../js/jquery-1.9.1.js');
 const jqueryui = require('../js/jquery-ui-1.10.1.min.js');
 const {ipcRenderer} = require('electron');
 var uInfo = undefined;
+var docURI = require('docuri');
 
 var d = new Date();
 var today = (d.getDate()/d.getMonth()/d.getFullYear());
@@ -43,20 +44,109 @@ function convertDayFormat(date){
   var x = date.split("/");
   return (x[2] + '-' + x[1]  + '-' + x[0]);
 }
+
+function convertDaytoCompareD(date){
+  var x = date.split("/");
+  return (new Date(x[2], x[1]-1, x[0])).getTime();
+}
+
+function convertDaytoCompareY(date){
+  var x = date.split("-");
+  return (new Date(x[0], x[1]-1, x[2])).getTime()
+}
+
 window.onload = function (){
   // Add the add button click event
+  document.getElementById('cancelAdd').addEventListener('click', () => {
+    document.getElementById("kykinh").innerHTML = "";
+    $("#end").val("");
+    $("#start").val("");
+    document.getElementById("end").disabled = true;
+    document.getElementById("hoantat").disabled = true;
+  })
+
   document.getElementById('hoantat').addEventListener('click', () => {
 
     // Retrieve the input fields
     var username = uInfo._id;
     var x = $("#start").val();
     var y = $("#end").val();
-
-    var start = convertDayFormat(x);
-    var end = convertDayFormat(y);
-    if(end==="undefined-undefined-"){
-        end=""
+    var end = "";
+    var kq = 1;
+    if( x ===""){
+      swal({
+          title: "Oops!!",
+          text: "Start is not allowed to null!!!",
+          type: "error",
+          confirmButtonText: "Try again",
+          confirmButtonColor: "#DD6B55"
+      });
     }
+    else{
+      database.getAllPeriod(uInfo._id, function(res, err){
+          var tam1 = convertDaytoCompareD(x);
+          var periodIDs = docURI.route('periodIDs/:Username/:FirstDay');
+          outloop:
+          for (var i = 0; i <res.length; i++){
+            var s = convertDaytoCompareY(periodIDs(res[i]._id).FirstDay);
+
+            if(res[i].LastDay !==""){
+              var e = convertDaytoCompareY(res[i].LastDay);
+              if(tam1 > s && tam1 <= e){
+                kq = 0;
+                break outloop;
+              }
+            }
+
+            if(y!==""){
+              var tam2 = convertDaytoCompareD(y);
+              if(s>tam1 && s<=tam2){
+                kq = 0;
+                break outloop;
+              }
+            }
+          }
+
+          if(kq===1){
+            var start = convertDayFormat(x);
+            if(y!=="")
+              end = convertDayFormat(y);
+            // Save the person in the database
+            database.addPeriod(username, start, end, function(err){
+              if (err !== null)
+              {
+                swal({
+                    title: "Oops!!",
+                    text: "You've already got this information recorded!",
+                    type: "error",
+                    confirmButtonText: "Try again",
+                    confirmButtonColor: "#DD6B55"
+                });
+              }
+              else
+              {
+                 swal({
+                      title: "Success!",
+                      text: "A new record is inserted!",
+                      type: "success",
+                      confirmButtonText: "Cool"
+                      });
+              }
+            });
+          }
+          else{
+            swal({
+              title: "Overlap period",
+              text: "Failed to update period!!",
+                type: "error",
+                confirmButtonText: "Try again",
+                confirmButtonColor: "#DD6B55"
+            });
+          }
+
+      })
+    }
+
 
     // Save the person in the database
     database.addPeriod(username, start, end, function(err){
@@ -80,6 +170,7 @@ window.onload = function (){
               });
       }
     });
+
     // Reset the input fields
     $("#end").val("");
     $("#start").val("");
@@ -121,7 +212,7 @@ window.onload = function (){
 }
 
 ipcRenderer.on('DirectToPeriodInsertionReply', (event, arg) => {
-  console.log(arg);
+  //console.log(arg);
   uInfo = arg;
   document.getElementById('username').innerHTML = uInfo._id;
 });
