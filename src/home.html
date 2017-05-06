@@ -26,40 +26,12 @@
 
 <script>
 
-	$(document).ready(function() {
-	   $('#calendar').fullCalendar({
-
-	   		 events: [
-        	{
-            start: '2017-04-24',
-           // end: '2017-04-27',
-            allDay: true,
-        	},
-        	{
-        		start: '2017-04-25',
-           // end: '2017-04-27',
-           		 allDay: true,
-        	}
-        // other events here
-    		],
-			 dayClick: function() {
-        	 if (event.url) {
-            window.open(event.url);
-            return false;
-
-        	}},
-        	editable: true,
-        	eventRender: function(event, element, calEvent) {
-            element.find(".fc-title").after($("<span ></span>").html("<img src=\"../images/S20.png\"></img>"));}
-
-
-	}); })
 </script>
 </head>
 <body>
 	<div id=wrapper>
 			<div id="top-bar">
-				<label id="username"></label><a href="updateUser.html"><i class="fa fa-user" id="updateUser" title="Update user"></i></a>
+				<label id="username"></label><i class="fa fa-user" id="updateUser" title="Update user"></i></a>
 				<i class="fa fa-sign-out" aria-hidden="true" id="logOut" title="Logout"></i>
 			</div>
 			<div id="side-nav">
@@ -73,7 +45,10 @@
 
 				<div id='calendar'></div>
 			</div>
-
+				<div id="rightNote" class="container-fluid">
+				<h1 id="note"></h1>
+				<h2 id="anticipate"></h2>
+			</div>
 
 	</div>
 	<script>

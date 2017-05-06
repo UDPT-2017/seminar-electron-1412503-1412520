@@ -32,17 +32,29 @@ exports.getUser = function(username, password, callback)
     });
 };
 
+
+/*exports.getAllRevUser = function(username, callback){
+  user.get(username, {revs: true, _rev: '5-33aff9ef43b069c2cd8e74b968e4531a', open_revs: 'all'}).then(function(doc)
+    {
+      callback(doc, null);
+    }).catch(function(err){
+      callback(null, err);
+      console.log(err);
+    });
+}*/
+
+
 exports.updateUser = function(username, newPassword, newMentsCycle, newAvgPeriod, callback)
 {
     user.get(username).then(function(doc)
     {
       callback(null);
     	return user.put({
-			_id: username,
+        _id: username,
     		_rev: doc._rev,
     		Password: newPassword,
-      		MentsCycle: newMentsCycle,
-      		AvgPeriod: newAvgPeriod
+      	MentsCycle: newMentsCycle,
+      	AvgPeriod: newAvgPeriod
   		});
     }).catch(function(err){
     	console.log(err);
@@ -85,8 +97,41 @@ exports.getAllPeriod = function(username, callback)
       }).catch(function(err){
           callback(null, err);
       })
-}
+};
 
+
+
+
+
+yymmddToddmmyy = function(date){
+  var x = date.split("-");
+  return (x[2] + '/' + x[1]  + '/' + x[0]);
+};
+ddmmyyToyymmdd = function(date){
+  var x = date.split("/");
+  return (x[2] + '-' + x[1]  + '-' + x[0]);
+};
+
+//tất cả các kỳ kinh
+  exports.all_period = function(username) {
+      var periodIDs = docURI.route('periodIDs/:Username/:FirstDay');
+      // Get all period from the database
+      period.allDocs({include_docs: true}).then(function (docs) {
+          var all_start = '<option value="None" >-- Chọn kỳ kinh --</option>';
+          var i = 0;
+          var id;
+          var start;
+          // Generate the table body
+          for ( i = 0; i < docs.total_rows; i++) {
+            start = periodIDs(docs.rows[i].doc._id);
+            id = {Username: username, FirstDay: start.FirstDay};
+            if(periodIDs(id) == docs.rows[i].doc._id)
+              all_start += '<option id ="option" value="' + yymmddToddmmyy(start.FirstDay) + '">' + yymmddToddmmyy(start.FirstDay) +'</option>';
+          }
+          // Fill the table content
+          document.getElementById('all_start').innerHTML = all_start;
+        });
+};
 
 //tìm ngày kết thúc
   exports.find_endday = function(username, start, callback){
@@ -109,7 +154,7 @@ exports.getAllPeriod = function(username, callback)
         callback(err);
       	return 0;
       });
-  }
+  };
 
 //Xóa kỳ kinh
 exports.deletePeriod = function(username, start, callback){
@@ -122,6 +167,6 @@ exports.deletePeriod = function(username, start, callback){
       callback(err);
       return 0;
     });
-}
 
+};
 //period.destroy();
