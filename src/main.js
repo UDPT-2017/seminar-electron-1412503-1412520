@@ -68,6 +68,11 @@ ipcMain.on('LogOut', (event, arg) => {
     	slashes: true
   		}));
   		mainWindow.show();
+
+  		mainWindow.on('closed', _=>{
+		mainWindow = null;
+		app.quit();
+	});
 	}
 });
 
