@@ -6,7 +6,7 @@ Thành viên:
 * [x] 1412503 Nguyễn Thị Thanh Thảo (thaonguyen1096)
 * [x] 1412520 Nguyễn Hoàng Thi (thikhin96)
 
-URL: https://thikhin96.github.io/
+URL: https://udpt-2017.github.io/seminar-electron-1412503-1412520/
 
 ## Yêu cầu
 
