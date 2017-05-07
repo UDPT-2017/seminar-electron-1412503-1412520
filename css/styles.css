@@ -135,13 +135,14 @@ h4.modal-title{
 
 #side-nav ul{
 	list-style: none;
-	padding: 20px;
-	margin: 0;
+  text-align: center;
+	padding: 0;
 }
 
 #side-nav li{
 	padding-bottom: 8px;
 }
+
 
 #wrapper{
 	position: relative;
@@ -205,6 +206,12 @@ h4.modal-title{
   font-weight: bold;
 }
 
+.active{
+  color: #52affb;
+  background: #424242;
+  min-width: 30px;
+  border-radius: 50%;
+}
 /*--------Calendar-zone-----*/
 	#external-events {
 		float: left;
