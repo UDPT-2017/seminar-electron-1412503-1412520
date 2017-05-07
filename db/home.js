@@ -111,7 +111,7 @@ function updateOnScreen(){
 			if (lDay >= tday)
 			{
 				var diffDays = diffDate(fDay, tday);
-				announcement = convertIntoOrder(diffDays+1);
+				announcement = convertIntoOrder(diffDays);
 				document.getElementById('note').innerHTML = announcement + " Day";
 			}
 			else
@@ -120,7 +120,7 @@ function updateOnScreen(){
 		else
 		{
 			var diffDays = diffDate(fDay, tday);
-			announcement = convertIntoOrder(diffDays+1);
+			announcement = convertIntoOrder(diffDays);
 			document.getElementById('note').innerHTML = announcement + " Day";
 		}
 		document.getElementById('anticipate').innerHTML = "Next Period: " + moment(nFirstDay).format("ddd, MMMM Do YYYY");

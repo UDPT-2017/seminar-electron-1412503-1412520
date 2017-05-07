@@ -111,7 +111,7 @@ window.onload = function() {
               {
                  swal({
                       title: "Success!",
-                      text: "!",
+                      text: "Update your period info successfully!!",
                       type: "success",
                       confirmButtonText: "Cool"
                       });
@@ -150,7 +150,7 @@ window.onload = function() {
         {
            swal({
                 title: "Success!",
-                text: "!",
+                text: "Delete your period info successfully!!!",
                 type: "success",
                 confirmButtonText: "Cool"
               }, function(){ window.location.reload(true);
