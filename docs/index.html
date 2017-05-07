@@ -256,6 +256,30 @@ Nếu lưu lượng dữ liệu lớn và cần giải quyết vấn đề đa l
                                 </div>
                                 
                             </section><!--//doc-section-->
+			    <section id="pouch-section" class="doc-section">
+				<h2 class="section-title">Giới thiệu PouchDB</h2>
+				    <p>PouchDB là một cơ sở dữ liệu JavaScript mã nguồn mở dựa trên Apache CouchDB được thiết kế có thể hoạt động tốt trên trình duyệt.PouchDB được tạo ra để giúp các nhà phát triển web xây dựng ứng dụng có thể làm việc ngoại tuyến tốt như làm việc trực tuyến.</p>
+				    <p>Nó cho phép ứng dụng lưu trữ dữ liệu cục bộ khi ngoại tuyến, sau đó sẽ đồng bộ dữ liệu này với CouchDB khi trở lại trực tuyến, giữ cho dữ liệu của nguời dùng được đồng bộ kể cả khi họ đăng nhập ở nơi khác.</p>
+				    <p>PouchDB hỗ trợ tất cả các trình duyệt mới có sử dụng IndexDB  hoặc WebSQL. PouchDB yêu cầu môi trường ES5 trở lên nên nếu bạn càn hỗ trợ cho các phiên bản thấp hơn thì bạn nên include thư viện es5-shim, hoặc dùng couchDB…</p>
+				    <p>PouchDB cũng  chạy trên Node.js, Cordova/PhoneGap, NW.js, ứng dụng Chrome và Electron. Tuy nhiên trong phần tìm hiểu này mình sẽ đi sâu về PouchDB với Node.js và Electron.</p>
+				</section>
+				<section id="pDown-section" class="doc-section">
+					<h2 class="section-title">Download PouchDB</h2>
+					<p>Tải PouchDB trực tiếp:</p>
+					<p><a href="https://github.com/pouchdb/pouchdb/releases/download/6.2.0/pouchdb-6.2.0.min.js">Link này</a></p>
+					<p><a href="https://github.com/pouchdb/pouchdb/releases/download/6.2.0/pouchdb-6.2.0.js ">Hoặc link này</a></p>
+					<p>Cài PouchDB thông qua npm nếu đang sử dụng trong môi trường Node.js/browserify/webpack:</p>
+					<p>npm install pouchdb --save</p>
+				</section>
+				<section id="prom-section" class="doc-section">
+					<h2 class="section-title">Promise và Callback trong PouchDB</h2>
+					<p>PouchDB cung cấp đầy đủ asynchronous API (giao diện lập trình ứng dụng bất đồng bộ). ĐIều này đảm bảo rằng khi bạn giao tiếp với PouchDB, UI sẽ phản hồi liên tục và không bị gián đoạn vì DOM không bị khóa bởi hoạt động của cơ sở dữ liệu. Tuy nhiên, việc làm việc với code bất đồng bộ có thể rất phức tạp nếu bạn đã quen với các synchronous APIs. Nên nó sẽ tốn một ít công sức để biết được những điều cơ bản.
+Để khiến mọi thứ trở nên linh hoạt hơn với người dùng PouchDB, API được cung cấp bởi 2 dạng: callback và promise.</p>
+					<p>Callback có dạng như sau: </p>
+					<img class="img-responsive" src="assets/images/6.png" alt="1"/>
+					<p>Promise có dạng như sau: </p>
+					<img class="img-responsive" src="assets/images/7.png" alt="1"/>
+				</section>
                         </div><!--//content-inner-->
                     </div><!--//doc-content-->
                     <div class="doc-sidebar hidden-xs">
@@ -279,9 +303,8 @@ Nếu lưu lượng dữ liệu lớn và cần giải quyết vấn đề đa l
      
                                 </ul><!--//nav-->
                                 <li><a class="scrollto" href="#pouch-section">Giới thiệu PouchDB</a></li>
-                                <li><a class="scrollto" href="#pDown-section">Download</a></li>
-                                <li><a class="scrollto" href="#prom-section">Promise và Callback</a></li>
-                                <li><a class="scrollto" href="#pouchdb-section">Làm việc với PouchDB</a></li>
+                                <li><a class="scrollto" href="#pDown-section">Download PouchDB</a></li>
+                                <li><a class="scrollto" href="#prom-section">Promise và Callback trong PouchDB</a></li>
                             </ul><!--//doc-menu-->
                         </nav>
                     </div><!--//doc-sidebar-->
