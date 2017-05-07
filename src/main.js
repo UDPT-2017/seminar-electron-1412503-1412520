@@ -8,6 +8,7 @@ const url = require('url');
 
 let mainWindow
 
+
 app.on('ready', _=>{
 	mainWindow = new BrowserWindow({
 		height: 780,
@@ -55,11 +56,23 @@ ipcMain.on('SignIn', (event, arg) => {
 ipcMain.on('LogOut', (event, arg) => {
 	if (arg === 1)
 	{
+		mainWindow.hide();
+		mainWindow = new BrowserWindow({
+		height: 780,
+		width: 1280,
+		resizable: false,
+	});
 		mainWindow.loadURL(url.format({
     	pathname: path.join(__dirname, 'logIn.html'),
     	protocol: 'file:',
     	slashes: true
   		}));
+  		mainWindow.show();
+
+  		mainWindow.on('closed', _=>{
+		mainWindow = null;
+		app.quit();
+	});
 	}
 });
 

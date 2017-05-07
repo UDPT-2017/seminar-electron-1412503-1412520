@@ -1,12 +1,81 @@
 const database = require('../db/database');
 const {ipcRenderer} = require('electron');
-
+var error = false;
 
 
 
 window.onload = function (){
+
+  $('#contact_form').bootstrapValidator({
+//        live: 'disabled',
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            userName: {
+                validators: {
+                    notEmpty: {
+                        message: 'Username is required and cannot be empty'
+                    }
+                }
+            },
+            mCy: {
+              validators: {
+                    notEmpty: {
+                        message: 'Your menstrual cycle must be provided'
+                    }
+                }
+            },
+            avgP: {
+              validators: {
+                    notEmpty: {
+                        message: 'Your average period must be provided'
+                    }
+                }
+            },
+            pass: {
+              validators: {
+                    notEmpty: {
+                        message: 'Password is required and cannot be empty'
+                    }
+                }
+            },
+            RePassword: {
+              validators: {
+                    notEmpty: {
+                        message: 'The field\'s content doesn\'t match your password' 
+                    },
+                    identical: {
+                        field: 'pass',
+                        message: 'The password and its confirm are not the same'
+                    }
+                }
+            }
+        }}).on('error.form.bv', function(e) {
+           document.getElementById('success').classList.remove('show');
+            document.getElementById('success').classList.add('hide');
+            document.getElementById('fail').classList.remove('hide');
+            document.getElementById('fail').classList.add('show');
+            document.getElementById('fail').innerHTML = "Are you sure your information meets our standards??";
+            error = true; 
+
+    }) .on('success.form.bv', function(e) {
+            error = false;
+            // If you want to prevent the default handler (bootstrapValidator._onSuccess(e))
+            // e.preventDefault();
+        });
+
+        /* $('#lgin').click(function() {
+        $('#contact_form').bootstrapValidator('validate');
+    });*/
+  
+
    //đăng ký
   document.getElementById('lgin').addEventListener('click', () => {
+    $('#contact_form').bootstrapValidator('validate');
 
     // Retrieve the input fields
     var username = document.getElementById('name').value;
@@ -16,41 +85,47 @@ window.onload = function (){
     var mentsCycle = document.getElementById('MC').value;
     var avgPeriod = document.getElementById('AP').value;
 
+    console.log(lastPeriod);
 
+    if (error === false)
+    {
+      // Save the person in the database
+      database.addUser(username, password, lastPeriod, mentsCycle, avgPeriod, function(err){
+        if (err !== null)
+        {
+              document.getElementById('success').classList.remove('show');
+              document.getElementById('success').classList.add('hide');
+              document.getElementById('fail').classList.remove('hide');
+              document.getElementById('fail').classList.add('show');
+              document.getElementById('fail').innerHTML = "Username Has Been Used";
+              console.log(err);
+        }
+        else
+        {
+              /*document.getElementById('fail').classList.remove('show');
+              document.getElementById('fail').classList.add('hide');
+              document.getElementById('success').classList.remove('hide');
+              document.getElementById('success').classList.add('show');*/
+              swal({
+                title: "Success!",
+                text: "You now have a brand new account!",
+                type: "success",
+                confirmButtonText: "Cool"
+                },
+                  function(isConfirm){
+                    if (isConfirm)
+                    {
+                      console.log('kay');
+                      $('#myModal').modal('toggle');
+                      location.reload();
+                    }
+                });
 
-    // Save the person in the database
-    database.addUser(username, password, lastPeriod, mentsCycle, avgPeriod, function(err){
-      if (err !== null)
-      {
-            document.getElementById('success').classList.remove('show');
-            document.getElementById('success').classList.add('hide');
-            document.getElementById('fail').classList.remove('hide');
-            document.getElementById('fail').classList.add('show');
-            console.log(err);
-      }
-      else
-      {
-            /*document.getElementById('fail').classList.remove('show');
-            document.getElementById('fail').classList.add('hide');
-            document.getElementById('success').classList.remove('hide');
-            document.getElementById('success').classList.add('show');*/
-            swal({
-              title: "Success!",
-              text: "You now have a brand new account!",
-              type: "success",
-              confirmButtonText: "Cool"
-              },
-                function(isConfirm){
-                  if (isConfirm)
-                  {
-                    console.log('kay');
-                    $('#myModal').modal('toggle');
-                    location.reload();
-                  }
-              });
-
-      }
+        }
     });
+    }
+
+    
 
 
   });
@@ -100,29 +175,7 @@ window.onload = function (){
   });
 
 
-    ipcRenderer.on('CreateUserReply', (event, arg)=>{
+    ipcRenderer.once('CreateUserReply', (event, arg)=>{
       console.log(arg);
-    });
-
-    document.getElementById('name').addEventListener('keyup', function() {
-         if (this.value.length > 1) {
-
-         }
-    });
-
-    document.getElementById('RePassword').addEventListener('keyup', function() {
-         if (this.value.length > 1) {
-
-         }
-    });
-
-    document.getElementById('MC').addEventListener('keyup', function() {
-
-    });
-
-    document.getElementById('AP').addEventListener('keyup', function() {
-         if ((this.value < 1) || (this.value > 10)) {
-
-         }
     });
 }

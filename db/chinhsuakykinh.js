@@ -229,7 +229,6 @@ window.onload = function() {
 
 
 ipcRenderer.on('DirectToPeriodInfoReply', (event, arg) => {
-
   uInfo = arg;
   document.getElementById('username').innerHTML = uInfo._id;
   //console.log(uInfo._id);
