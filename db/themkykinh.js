@@ -137,7 +137,7 @@ window.onload = function (){
           else{
             swal({
               title: "Overlap period",
-              text: "Failed to update period!!",
+              text: "Failed to add period!!",
                 type: "error",
                 confirmButtonText: "Try again",
                 confirmButtonColor: "#DD6B55"
@@ -146,30 +146,6 @@ window.onload = function (){
 
       })
     }
-
-
-    // Save the person in the database
-    database.addPeriod(username, start, end, function(err){
-      if (err !== null)
-      {
-        swal({
-            title: "Oops!!",
-            text: "You've already got this information recorded!",
-            type: "error",
-            confirmButtonText: "Try again",
-            confirmButtonColor: "#DD6B55"
-        });
-      }
-      else
-      {
-         swal({
-              title: "Success!",
-              text: "A new record is inserted!",
-              type: "success",
-              confirmButtonText: "Cool"
-              });
-      }
-    });
 
     // Reset the input fields
     $("#end").val("");
