@@ -63,6 +63,7 @@ Electron kết hợp giữa chromium và node.js trong một runtime. Chính vì
                             </section><!--//doc-section-->
                             <section id="c-section" class="doc-section">
                                 <h2 class="section-title">Chromium là gì?</h2>
+                                <p>Chromium là dự án trình duyệt web mã nguồn mở và là nền tảng cho Google Chrome. Do hoàn toàn là mã nguồn mở nên Chromium có sẵn trên kho phần mềm Linux để dễ dàng cài đặt hơn. Ngoài ra trình duyệt Chromium cũng có sẵn trên các nền tảng khác. Bạn có thể chạy Chromium trên Windows hoặc Mac</p>
                             </section><!--//doc-section-->
                             
                             <section id="web-section" class="doc-section">
@@ -74,7 +75,7 @@ Không giới hạn môi trường lập trình, lập trình viên có thể l�
 </p>
                                 </div><!--//section-block-->
                             </section><!--//doc-section-->
-                            <section id="desk-section" class="doc-section">
+                            <section id="desktop-section" class="doc-section">
                                 <h2 class="section-title">Vì sao kết hợp với ứng dụng desktop?</h2>
                                 <div class="section-block">
                                     <p>Có thể truy cập tới hệ thống tập tin của người dùng</p>
@@ -93,47 +94,107 @@ Không giới hạn môi trường lập trình, lập trình viên có thể l�
                                     
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <h6>Basic Buttons</h6>
+                                            <h6>Java</h6>
                                             <ul class="list list-unstyled">
-                                                <li><a href="#" class="btn btn-primary">Primary Button</a></li>
-                                                <li><a href="#" class="btn btn-green">Green Button</a></li>
-                                                <li><a href="#" class="btn btn-blue">Blue Button</a></li>
-                                                <li><a href="#" class="btn btn-orange">Orange Button</a></li>
-                                                <li><a href="#" class="btn btn-red">Red Button</a></li>
+                                                <li>Java được sử dụng để phát triển các ứng dụng đa nền tảng lâu đời nhất. Trái ngược với các nền tảng khác, Java bản chất là một ngôn ngữ lập trình. Các nền tảng còn lại đều được tạo ra với sự hỗ trợ của một ngôn ngữ lập trình khác.</li>
+                                                <li>Lợi ích:</li>
+                                                <ul class="list list-unstyled">
+                                                    <li>Do là kẻ tiên phong nên nó được sử dụng bởi một cộng đồng khổng lồ, do vậy cho ra đời rất rất nhiều các thư viện giải quyết đa dạng các vấn đề từ lớn đến nhỏ. Nói Java là nền tảng mạnh về xử lý dữ liệu cũng không ngoa.</li>
+                                                    <li>xử lý đa luồng rất tốt</li>
+                                                </ul>
+                                                <li>Bất lợi:</li>
+                                                <ul class="list list-unstyled">
+                                                    <li>Muốn sử dụng được ứng dụng phải cài đặt máy ảo của Java</li>
+                                                    <li>Giao diện không được thẩm mỹ cho lắm</li>
+                                                    <li>1 source code không thể sử dụng ở các platform khác
+Nếu lưu lượng dữ liệu lớn và cần giải quyết vấn đề đa luồng, bạn có thể cân nhắc sử dụng Java.
+</li>  
+                                                </ul>
                                             </ul>
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <h6>CTA Buttons</h6>
+                                            <h6>Electron</h6>
                                             <ul class="list list-unstyled">
-                                                <li><a href="#" class="btn btn-primary btn-cta"><i class="fa fa-download"></i> Download Now</a></li>
-                                                <li><a href="#" class="btn btn-green btn-cta"><i class="fa fa-code-fork"></i> Fork Now</a></li>
-                                                <li><a href="#" class="btn btn-blue btn-cta"><i class="fa fa-play-circle"></i> Find Out Now</a></li>
-                                                <li><a href="#" class="btn btn-orange btn-cta"><i class="fa fa-bug"></i> Report Bugs</a></li>
-                                                <li><a href="#" class="btn btn-red btn-cta"><i class="fa fa-exclamation-circle"></i> Submit Issues</a></li>
-                                            </ul>
+                                                <li>Đây là một trong những nền tảng mới nhất trong lĩnh vực phát triển các ứng dụng cross-platform. Như đã đề cập, Electron là một nền tảng tích hợp công nghệ web để xây dựng 1 ứng dụng desktop, vì thế nó giữ cả điểm mạnh lẫn điểm yếu của cả 2 loại ứng dụng này.</li>
+                                                <li>Lợi ích:
+                                                <ul class="list list-unstyled">
+                                                    <li>JS gần đây đang rất phát triển và được sử dụng rộng rãi</li>
+                                                    <li>HTML và CSS kết hợp sẽ tạo nên những giao diện tuyệt đẹp</li>
+                                                    <li>Các thư viện JS về web có thể được dùng để xây dựng ứng dụng desktop</li>
+                                                    <li>Source code có thể được sử dụng ở các nền tảng khác</li>
+                                                    <li>Có thể sử dụng mọi lúc mọi nơi, kể cả có internet hoặc không</li>
+                                                </ul>
+                                                </li>
+                                                <li>Bất lợi:
+                                                <ul class="list list-unstyled">
+                                                    <li>vì JS khá mới mẻ đối với phát triển ứng dụng cross-platform, không có nhiều thư viện hỗ trợ việc xử lý dữ liệu nên nếu muốn xây dựng một ứng dụng đòi hỏi việc xử lý dữ liệu lớn và phức tạp, e rằng bạn phải tự viết các thư viện ấy.</li>
+                                                    <li>Ngoài ra, khi ứng dụng được truy cập online, việc bảo vệ thông tin cũng như source code cũng là một vấn đề mà bản thân electron vẫn chưa giải quyết được.</li>
+                                                </ul>
+                                                </li>
+                                             </ul>
                                         </div>
+                                        
                                     </div><!--//row-->
+                                    <p>Tóm lại, Nếu ứng dụng của bạnkhông đòi hỏi các thuật toán và xử lý dữ liệu phức tạp, đây là một sự lựa chọn tuyệt vời.</p>
                                 </div><!--//section-block-->
                             </section><!--//doc-section-->
-                            <section id="video-section" class="doc-section">
-                                <h2 class="section-title">Video</h2>
+                            <section id="elec-section" class="doc-section">
+                                <h2 class="section-title">Tìm hiểu sâu hơn về Electron</h2>
                                 <div class="section-block">
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <h6>Responsive Video 16:9</h6>
-                                            <!-- 16:9 aspect ratio -->
-                                            <div class="embed-responsive embed-responsive-16by9">
-                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ejBkOjEG6F0?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <h6>Responsive Video 4:3</h6>
-                                            <!-- 4:3 aspect ratio -->
-                                            <div class="embed-responsive embed-responsive-4by3">
-                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ejBkOjEG6F0?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
-                                            </div>
-                                        </div>
-                                    </div><!--//row-->
+                                    <p>Nói một cách đơn giản, Electron cung cấp một runtime để xây dựng ứng dụng desktop và sử dụng thuần JS (điều này đã được nhắc ở phần trên). Nó giống như một app nodejs thông thường với file package.json, Electron lấy thông tin file main được thiết lập ở file này và thực thi nó. Sau đấy trong file này, các Window tương ứng với mỗi trang Web khác nhau được tạo ra. </p>
+                                    <img class="img-responsive" src="assets/images/electron.png" alt="electron"/>
+                                    <p>Khi ta khởi tạo tiến trình chính (thực thi file main.js), về cơ bản là không một cửa sổ nào được tạo ra cả. Chỉ khi bạn tạo ra 1 BrowserWindow, khi ấy chương trình của bạn mới chính thức có giao diện. Mỗi 1 BrowserWindow chạy một tiến trình gọi là “renderer process”. Các renderer process này chịu trách nhiệm render các file html tương ứng lên window.</p>
+                                    <p>Tóm lại, tiến trình chính chịu trách nhiệm giao diện người dùng (các màn hình ứng dụng), các renderer process sẽ render nội dung của các file html lên giao diện tương ứng.</p>
+                                    <p>Câu hỏi đặt ra, các web pages này tương tác với tiến trình main như thế nào? </p>
+                                    <img class="img-responsive" src="assets/images/remote.png" alt="ipc"/>
+                                    <p>Cơ chế IPC:</p>
+                                    <p>Ở chơ chế này, file main.js (chính là main process) hoạt động như một server đối với cách code web thông thường, và các renderer process sẽ là những file .js tương tự như các client. Các IPC được sử dụng để truyền thông tin giữa main.js và các file .js phía client thông qua các hàm như:  (hàm này để lắng nghe các thông điệp từ một kênh nào đó</p>
+                                    <p>Ở tiến tình main, ipc được sử dụng là ipcMain, ta chỉ cần thêm phần khai báo như sau:</p>
+                                    <p>const {ipcMain} = require(‘electron’);</p>
+                                    <p>Ở các renderer process, ipc được sử dụng là ipcRenderer và được khai báo như sau:</p>
+                                    <p>const {ipcRenderer} = require(‘electron’);</p>
+                                    <p>Các renderer muốn trao đổi thông tin với nhau phải thông qua tiến trình main. Phần này tôi sẽ giải thích rõ hơn ở phần tạo ứng dụng.</p>
+                                    <p>Một số hàm dùng để trao đổi giữa main process và renderer process:</p>
+                                        <ul class="list list-unstyled">
+                                            <li>Các hàm có ở cả main và renderer process:
+                                                <ul class="list list-unstyled">
+                                                    <li>
+                                                        <p>on(channel, listener)</p>
+                                                        <p>channel: String</p>
+                                                        <p>listener = function(event, args…..)</p>
+                                                        <br>
+                                                        <p>Hàm này để lắng nghe các thông điệp từ một kênh nào đó, hàm callback truyền vào chính là hàm để xử lý thông điệp ấy với các tham số args là thông điệp và event là nơi gửi thông điệp.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>once(channel, listener)</p>
+                                                        <p>channel: String</p>
+                                                        <p>listener = function(event, args…..)</p>
+                                                        <br>
+                                                        <p>Hàm này cũng dùng để lắng nghe thông điệp nhưng chỉ được sử dụng 1 lần, sau lần đó, renderer hoặc main sẽ không nhận thông điệp từ kênh này nữa.</p>
+                                                    </li>
+                                                </ul>
+                                               
+                                            </li>
+                                            <li>Các hàm chỉ có ở renderer process:
+                                                <ul class="list list-unstyled">
+                                                    <p>ipcRenderer.send(channel[, arg1][,arg2][,…])</p>
+                                                    <p>channel: String</p>
+                                                    <p>…args: các thông điệp, có thể là bất cứ object nào</p>
+                                                    <br>
+                                                    <p>Hàm này dùng để gửi các thông điệp từ renderer process tới main process. Nó sẽ tạo một kênh truyền và để nhận các thông điệp main process sẽ lắng nghe trên kênh truyền này.</p>
+                                                </ul>
+                                                                                                <ul class="list list-unstyled">
+                                                    <p>ipcRenderer.sendSync(channel[, arg1][,arg2][,…])</p>
+                                                    <p>channel: String</p>
+                                                    <p>…args: các thông điệp, có thể là bất cứ object nào</p>
+                                                    <br>
+                                                    <p>Hàm này dùng để gửi các thông điệp từ renderer process tới main process. Nó sẽ tạo một kênh truyền và để nhận các thông điệp main process sẽ lắng nghe trên kênh truyền này. Tuy nhiên nó khác hàm send ở việc ngay trong hàm này main process sẽ trả về giá trị trực tiếp thông qua event.returnValue.</p>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    <p></p>
+                                    <p></p>
+                                    <p></p>
                                 </div><!--//section-block-->
                             <section id="icons-section" class="doc-section">
                                 <h2 class="section-title">Icons</h2>
