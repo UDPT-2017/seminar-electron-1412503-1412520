@@ -19,6 +19,9 @@ document.getElementById('hoantat').addEventListener('click',()=>{
   database.updateUser(uInfo._id, pass, mens_cyc, av_period, function(err){
     if (err !== null)
     {
+        uInfo.Password = pass;
+        uInfo.MentsCycle = mens_cyc;
+        uInfo.AvgPeriod = av_period;
       swal({
           title: "Oops!!",
           text: "Failed to update user",
