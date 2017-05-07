@@ -24,8 +24,17 @@ Yêu cầu **bắt buộc**
 * [x] Tạo github page để viết lại báo cáo cho nội dung đề tài tìm hiểu
 
 Các **nội dung lý thuyết** dự định tìm hiểu. Nhóm liệt kê các nội dung đã làm được vào bên dưới và check vào các nội dung đã tìm hiểu được.
-* [ ] Nội dung 1
-* [ ] Nội dung 2
+* [x] Electron
+* [x] Chromium
+* [x] Lợi ích của công nghệ web
+* [x] Vì sao kết hợp với ứng dụng desktop?
+* [x] Cross-platform app
+* [x] Tìm hiểu sâu hơn về Electron
+* [x] Sơ lược về ứng dụng demo và áp dụng IPC
+* [x] Giới thiệu PouchDB
+* [x] Promise và callback
+* [x] Làm việc với PouchDB
+
 
 Các **chức năng của demo** đã thực hiện hoặc dự kiến thực hiện. Nhóm check vào các chức năng đã làm
 * [x] Tạo tài khoản
