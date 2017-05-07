@@ -192,27 +192,69 @@ Nếu lưu lượng dữ liệu lớn và cần giải quyết vấn đề đa l
                                                 </ul>
                                             </li>
                                         </ul>
-                                    <p></p>
-                                    <p></p>
-                                    <p></p>
                                 </div><!--//section-block-->
-                            <section id="icons-section" class="doc-section">
-                                <h2 class="section-title">Icons</h2>
-                                <div class="section-block">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec imperdiet turpis. Curabitur aliquet pulvinar ultrices. Etiam at posuere leo. Proin ultrices ex et dapibus feugiat <a href="#">link example</a> aenean purus leo, faucibus at elit vel, aliquet scelerisque dui. Etiam quis elit euismod, imperdiet augue sit amet, imperdiet odio. Aenean sem erat, hendrerit  eu gravida id, dignissim ut ante. Nam consequat porttitor libero euismod congue. 
-                                    </p>
-                                </div><!--//section-block-->
-                                <div class="section-block">
-                                    <h6>Elegant Icon Font</h6>
-                                    <a href="https://www.elegantthemes.com/blog/resources/elegant-icon-font" target="_blank"><img class="img-responsive" src="assets/images/demo/elegant-icon-font.jpg" alt="elegant icons" /></a>
-                                </div><!--//section-block-->
-                                <div class="section-block">
-                                    <h6>FontAwesome Icon Font</h6>
-                                    <a href="https://fortawesome.github.io/Font-Awesome/" target="_blank"><img class="img-responsive" src="assets/images/demo/fontawesome-icons.png" alt="fontawesome" /></a>
+                            </section>
+                            <section id="ipc-section" class="doc-section">
+                                <h2 class="section-title">Sơ lược về ứng dụng demo và áp dụng IPC</h2>
+                                <p>Vì Electron sử dụng công  nghệ web nên bạn có thể thoải mái sử dụng bất cứ framework front-end nào bạn thích. Trong bài này, app demo của chúng tôi sử dụng Boostrap. Ở phần hướng dẫn này, tôi sẽ không nhấn mạnh về phần giao diện người dùng để tránh làm loãng chủ đề của chúng ta. Thay vào đó là cách chúng ta truyền thông tin và giao tiếp giữa tiến trình chính (main process) và các tiến trình con (renderer). Nhưng trước hết tôi muốn làm rõ một số khái niệm cơ bản</p>
+                              
+                                <div id="cc" class="section-block">
+                                     <h6>Tìm hiểu các công cụ</h6>
+                                     <p>Node, npm, bower,… là các công cụ front-ent. Các công cụ được chia làm 2 loại chính là: công cụ cài đặt (“installing”) hoặc thực hiện (“doing”).</p>
+                                     <p>Các công cụ cài đặt gồm: npm, bower, yeoman,…  dùng để cài đặt các thư viện front-end, các server, các thư viện kiểm thử, hoặc cũng có thể cài đặt các công cụ front-end khác,…</p>
+                                    <p>Các công cụ thực hiện (“doing”) như node, grunt, webpack,… tự động hóa các task lặp đi lặp lại và kiểm tra lỗi trong quá trình phát triển. Những thứ chúng làm đôi khi gọi là “task”. Để thực hiện các task này chúng thường xuyên sử dụng các package và plugin. Một số công cụ loại này cố gắng xử lý mọi task (Grunt, Gulp,..). Một số khác tập trung vào 1 thứ, ví dụ như xử lý JS dependencies (Browerrify, Require.js,…)</p>
+                                    <p>Tuy nhiên không có ranh giới rõ ràng giữa 2 loại công cụ này. Mỗi loại công cụ thường thiên về một thứ chứ không hẳn chỉ làm thứ đó. Đôi khi công cụ cài đặt sẽ chạy các file, như npm có thể chạy các lệnh và script.</p>
+                                    <img class="img-responsive" src="assets/images/tool.png" alt="tool"/>
+                                    <p>Node và npm cài đặt và chạy tất cả các công cụ còn lại. Node là công cụ thực hiện ("doing") và npm là công cụ cài đặt ("installing").</p>
+                                    <p>+ Nodejs: Node.js là 1 nền tảng chạy trên môi trường V8 Javascript runtime. Nói nôm na đây là một chương trình để chạy các file js trên máy tính</p>
+                                    <p>+ npm là tool để tải các chương trình do người ta viết cho node</p>
+                                    <p>Ở ứng dụng demo này, chúng tôi chỉ sử dụng npm và nodejs mà không dùng bất cứ công cụ nào khác.</p>
                                 </div><!--//section-block-->
                                 
-                            </section><!--//doc-section-->
-                            
+                                <div id="app" class="section-block">
+                                    <h6>Giới thiệu sơ về ứng dụng:</h6>
+                                    <p>Đây là một ứng dụng quản lý kỳ kinh của người phụ nữ, Ứng dụng có đầy đủ các chức năng như đăng nhập, đăng ký, Thêm kỳ kinh, Xóa kỳ kinh, Sửa kỳ kinh và hiển thị các kỳ kinh trên màn hình.</p>
+                                    <p>Các màn hình giao diện tương ứng từng chức năng như sau:</p>
+                                    <p>Màn hình đăng nhập:</p>
+                                    <img class="img-responsive" src="assets/images/dn1.png" alt="logIn"/>
+                                    <p>Đăng ký tài khoản:</p>
+                                    <img class="img-responsive" src="assets/images/tk.png" alt="SignUp"/>
+                                    <p>Thông tin kinh nguyệt:</p>
+                                    <img class="img-responsive" src="assets/images/kn.png" alt="HomePage"/>
+                                    <p>Thêm kinh nguyệt:</p>
+                                    <img class="img-responsive" src="assets/images/tkn.png" alt="InsertPeriod"/>
+                                    <p>Chỉnh sửa thông tin kinh nguyệt:</p>
+                                    <img class="img-responsive" src="assets/images/skn.png" alt="UpdatePeriod"/>
+                                    <p>Chỉnh sửa thông tin người dùng:</p>
+                                    <img class="img-responsive" src="assets/images/snd.png" alt="UpdateUser"/>
+                                </div><!--//section-block-->
+                                <div id="ipcapp" class="section-block">
+                                    <h6>Áp dụng IPC vào ứng dụng:</h6>
+                                    <p>Đây là một ứng dụng nodejs thông thường, nên đầu tiên bạn cần khởi tạo ứng dụng dùng lệnh npm init.</p>
+                                    <p>Sau đó tiến hành cài electron dùng:
+	                                    npm install --save –dev electron
+                                    </p>
+                                    <p>
+                                       Ở file package.json, thêm dòng: 
+                                    </p>
+                                    <img class="img-responsive" src="assets/images/1.png" alt="1"/>
+                                    <p>Thuộc tính “main” chính là đường dẫn tới file main.js,  “start” trong phần “script” có nghĩa là khi ta dùng lệnh “npm start”, nó sẽ thực thi ứng dụng electron này.</p>
+                                    <p>Khi này trong ta sẽ tạo 1 thư mục src ngay cùng thư mục chứa file package.json, và trong thư mục src này, ta tạo file main.js để chạy ứng dụng.</p>
+                                    <p>Trong file main.js, nhớ require(‘electron’) nhé, sau đó tạo một BrowserWindow như hình:</p>
+                                    <img class="img-responsive" src="assets/images/2.png" alt="1"/>
+                                    <p>Vậy là ta đã tạo được một màn hình window. Khi khởi chạy ứng dụng, ta sẽ nhận đc:</p>
+                                    <img class="img-responsive" src="assets/images/dn.png" alt="1"/>
+                                    <p>Tương ứng với màn hình này là file logIn.js, renderer process:</p>
+                                    <img class="img-responsive" src="assets/images/3.png" alt="1"/>
+                                     <p>Khi lấy các thông tin người dùng nhập vào và kiểm tra trong cơ sở dữ liệu, nếu người dùng có tồn tại, ta thực hiện gửi thông tin người dùng, ngược lại sẽ trả số 0 về main pocess:</p>
+                                     <img class="img-responsive" src="assets/images/4.png" alt="1"/>
+                                    <p>Ở đây ta tạo kênh “SignIn” , doc là thông tin người dùng</p>
+                                    <img class="img-responsive" src="assets/images/5.png" alt="1"/>
+                                    <p>Ở main.js, lắng nghe kênh “SignIn”. Window sẽ load trang “home.html” và renderer của trang này là home.js. mainWindow.webContents.on(‘did-finish-load’, function) là hàm sẽ thực thi hàm function sau ngay sau khi trang web đã được load. Khi này , hàm main sử dụng mainWindow.webContents.send tức là sẽ gửi thông điệp đến trang renderer hiện hành, đó là home.js chứ không còn là logIn.js nữa.</p>
+                                    <p>Như vậy, ở đây, giữa 2 renderer logIn và home không giao tiếp trực tiếp với nhau mà thông qua main.js như trên.</p>
+                                    <p>Tương tự như vậy, các màn hình còn lại cũng tương tác với nhau theo cách thức đó.</p>
+                                </div>
+                                
                             </section><!--//doc-section-->
                         </div><!--//content-inner-->
                     </div><!--//doc-content-->
