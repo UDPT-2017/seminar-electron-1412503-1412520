@@ -175,7 +175,7 @@ window.onload = function (){
   });
 
 
-    ipcRenderer.once('CreateUserReply', (event, arg)=>{
+    ipcRenderer.on('CreateUserReply', (event, arg)=>{
       console.log(arg);
     });
 }
